@@ -1,0 +1,51 @@
+.table-height {
+  height: calc(100% - 0px);
+
+  overflow: visible;
+}
+
+nz-select {
+  width: 40%;
+}
+
+.center-panel {
+  /* display: flex; */
+  width: 100%;
+  z-index: 10;
+}
+
+.center-panel-heading {
+  float: left;
+  margin-bottom: 1%;
+}
+
+.center-panel-searchBar {
+  float: left;
+  width: 720px;
+  /* margin-left: 10%; */
+  margin-bottom: 2%;
+  justify-content: flex-start;
+
+}
+
+.center-panel-selected-topic {
+  float: left;
+  /* margin-left: 10%; */
+  /* margin-top: 1%; */
+  margin-bottom: 1%;
+}
+
+/* table */
+.editable-cell {
+  position: relative;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 4px 11px;
+}
+
+/* end table */

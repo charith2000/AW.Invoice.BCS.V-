@@ -1,0 +1,278 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Add New Business Rule </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-content>
+      <form nz-form  [nzLayout]="'vertical'" [formGroup]="addBusinessRuleForm">
+        <div class="row">
+          <div class="col-sm-4">
+            <nz-form-label>
+              Reporting Type
+            </nz-form-label>
+            <nz-form-item>
+              <nz-form-control nzHasFeedback>
+                <input nz-input formControlName="reportingId"
+                       [readOnly]="true" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label class="required">
+                Segment
+              </nz-form-label>
+              <nz-select nzPlaceHolder="Select" formControlName="reportingSegmentId" nzSize="default">
+                <nz-option *ngFor="let o of reportingSegments | async " [nzValue]="o.reportingSegmentId"
+                           [nzLabel]="o.segmentName"></nz-option>
+              </nz-select>
+            </nz-form-item>
+
+
+            <nz-form-item>
+              <nz-form-label class="required">Description</nz-form-label>
+              <nz-form-control nzHasFeedback nzErrorTip="Message is required">
+            <textarea nz-input formControlName="description" required
+                      maxlength="50"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label class="required">
+                Rule Execution Point
+              </nz-form-label>
+              <nz-select nzPlaceHolder="Select" formControlName="ruleExecutionPoint" nzSize="default">
+                <nz-option nzLabel="After source download" nzValue="1"></nz-option>
+                <nz-option nzLabel="Before map and verification" nzValue="2"></nz-option>
+                <nz-option nzLabel="After map and verification" nzValue="3"></nz-option>
+              </nz-select>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label class="required">Executing Sequence</nz-form-label>
+              <nz-form-control nzHasFeedback>
+                <input nz-input formControlName="sequence" placeholder="{{maxSequence}}" required
+                       [readOnly]= "false" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label class="required">Status</nz-form-label>
+              <nz-form-control nzHasFeedback>
+                <input nz-input formControlName="status" placeholder="Active" required
+                       [readOnly]="true"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-sm-8">
+            <div class="card">
+              <div class="card-header">
+                Query
+              </div>
+              <div class="card-body" style="height: 478px">
+                <ngx-codemirror
+                  formControlName="query"
+                  [options]="options"
+                ></ngx-codemirror>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button
+            class="me-2"
+            style="width: 200px"
+            nz-button nzType="primary"
+            (click)="onTestQuery()"
+            [disabled]=!addBusinessRuleForm.valid
+          >
+            Verify & Save
+          </button>
+
+          <button
+            class=" ms-2"
+            style="width: 200px"
+            nz-button nzType="default" (click)="handleCancel()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+
+
+<!--<div mat-dialog-content>-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-6">-->
+<!--      <form nz-form  [nzLayout]="'vertical'" [formGroup]="addBusinessRuleForm">-->
+<!--        <div class="row">-->
+<!--          <div class="col-sm-4">-->
+<!--            <nz-form-label>-->
+<!--              Reporting Type-->
+<!--            </nz-form-label>-->
+<!--            <nz-form-item>-->
+<!--              <nz-form-control nzHasFeedback>-->
+<!--                <input nz-input formControlName="reportingId"-->
+<!--                       [readOnly]="true" style="pointer-events: none"/>-->
+<!--              </nz-form-control>-->
+<!--            </nz-form-item>-->
+
+<!--            <nz-form-item>-->
+<!--              <nz-form-label class="required">-->
+<!--                Segment-->
+<!--              </nz-form-label>-->
+<!--              <nz-select nzPlaceHolder="Select" formControlName="reportingSegmentId" nzSize="default">-->
+<!--                <nz-option *ngFor="let o of reportingSegments | async " [nzValue]="o.reportingSegmentId"-->
+<!--                           [nzLabel]="o.segmentName"></nz-option>-->
+<!--              </nz-select>-->
+<!--            </nz-form-item>-->
+
+
+<!--            <nz-form-item>-->
+<!--              <nz-form-label class="required">Description</nz-form-label>-->
+<!--              <nz-form-control nzHasFeedback nzErrorTip="Message is required">-->
+<!--            <textarea nz-input formControlName="description" required-->
+<!--                      maxlength="50"></textarea>-->
+<!--              </nz-form-control>-->
+<!--            </nz-form-item>-->
+
+<!--            <nz-form-item>-->
+<!--              <nz-form-label class="required">-->
+<!--                Rule Execution Point-->
+<!--              </nz-form-label>-->
+<!--              <nz-select nzPlaceHolder="Select" formControlName="ruleExecutionPoint" nzSize="default">-->
+<!--                <nz-option nzLabel="ASD" nzValue="1"></nz-option>-->
+<!--                <nz-option nzLabel="BMV" nzValue="2"></nz-option>-->
+<!--                <nz-option nzLabel="AMV" nzValue="3"></nz-option>-->
+<!--              </nz-select>-->
+<!--            </nz-form-item>-->
+<!--            <nz-form-item>-->
+<!--              <nz-form-label class="required">Executing Sequence</nz-form-label>-->
+<!--              <nz-form-control nzHasFeedback>-->
+<!--                <input nz-input formControlName="sequence" required-->
+<!--                       [readOnly]="false"/>-->
+<!--              </nz-form-control>-->
+<!--            </nz-form-item>-->
+<!--            <nz-form-item>-->
+<!--              <nz-form-label class="required">Status</nz-form-label>-->
+<!--              <nz-form-control nzHasFeedback>-->
+<!--                <input nz-input formControlName="status" placeholder="Active" required-->
+<!--                       [readOnly]="true"/>-->
+<!--              </nz-form-control>-->
+<!--            </nz-form-item>-->
+<!--          </div>-->
+<!--          <div class="col-sm-8">-->
+<!--            <div class="card">-->
+<!--              <div class="card-header">-->
+<!--                Query-->
+<!--              </div>-->
+<!--              <div class="card-body" style="height: 388px">-->
+<!--                <ngx-codemirror-->
+<!--                  formControlName="query"-->
+<!--                  [options]="options"-->
+<!--                ></ngx-codemirror>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="d-flex justify-content-end">-->
+<!--          <button-->
+<!--            class="me-2"-->
+<!--            style="width: 200px"-->
+<!--            nz-button nzType="primary"-->
+<!--            (click)="onTestQuery()"-->
+<!--            [disabled]=!addBusinessRuleForm.valid-->
+<!--          >-->
+<!--            Verify & Save-->
+<!--          </button>-->
+
+<!--          <button-->
+<!--            class=" ms-2"-->
+<!--            style="width: 200px"-->
+<!--            nz-button nzType="default" (click)="handleCancel()">-->
+<!--            Cancel-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div class="col-sm-6">-->
+<!--      <div mat-dialog-content>-->
+<!--        <div *ngFor="let form of rulesList">-->
+<!--          <div class="card">-->
+<!--            <div class="card-body">-->
+<!--              <form nz-form  [nzLayout]="'vertical'" [formGroup]="form">-->
+<!--                <div class="card mb-4">-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="row">-->
+<!--                      <div class="col-4">-->
+<!--                        <nz-form-label>-->
+<!--                          Segment-->
+<!--                        </nz-form-label>-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="segmentName"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                      </div>-->
+<!--                      <div class="col-4">-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-label>-->
+<!--                            Sequence No-->
+<!--                          </nz-form-label>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="sequence"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                      </div>-->
+<!--                      <div class="col-4">-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-label>Status</nz-form-label>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="status"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <nz-form-item>-->
+<!--                      <nz-form-label>-->
+<!--                        Rule Execution Point-->
+<!--                      </nz-form-label>-->
+<!--                      <nz-form-control nzHasFeedback>-->
+<!--                        <input nz-input formControlName="ruleExecutionPoint"-->
+<!--                               [readOnly]="true"/>-->
+<!--                      </nz-form-control>-->
+<!--                    </nz-form-item>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--                <div class="card">-->
+<!--                  <div class="card-header">-->
+<!--                    Query-->
+<!--                  </div>-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="card-body">-->
+<!--                      <ngx-codemirror-->
+<!--                        [options]="options"-->
+<!--                        [ngModel]="query"-->
+<!--                      ></ngx-codemirror>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->

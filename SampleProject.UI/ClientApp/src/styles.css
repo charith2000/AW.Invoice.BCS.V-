@@ -1,0 +1,350 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+@import 'ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,500;1,600;1,800;1,900&display=swap');
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/ssms.css';
+/*html, body { height: 100%; }*/
+/*body { margin: 0; font-family: 'Poppins', sans-serif;}*/
+
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  --background-color-dark: #222222;
+  --text-color-dark: #ffffff;
+
+}
+
+body {
+  margin: 0;
+  font-family: SF Pro Display, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+  --background-color-dark: #222222;
+  --text-color-dark: #ffffff;
+}
+
+body.dark-mode {
+  margin: 0;
+  font-family: SF Pro Display, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.ant-table-pagination-right {
+  justify-content: end !important;
+}
+
+.ant-table.ant-table {
+  border-radius: 10px !important;
+
+}
+
+.ant-table-tbody > tr > td {
+  padding: 3px 5px;
+  font-size: 13px !important;
+}
+
+.ant-table-tbody > tr:nth-child(even) > td {
+  background-color: #F4F6F8;
+}
+
+.ant-table-tbody > tr:nth-child(odd) > td {
+  background-color: #FFFFFF;
+
+}
+
+.ant-table-tbody > tr.clicked > td {
+  background-color: #CAD9E0 !important;
+
+}
+
+.ant-table-thead > tr > th {
+  padding: 5px 10px;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+
+
+}
+
+.ant-table.ant-table-small .ant-table-thead > tr > th {
+  padding: 5px 10px;
+
+}
+
+.ant-table.ant-table-small .ant-table-tbody > tr > td {
+  padding: 3px 5px;
+  font-size: 12px;
+
+}
+
+.ant-table-title {
+  padding: 5px 5px;
+  font-size: 14px;
+  font-weight: 500;
+
+}
+
+.ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tbody > tr > td > .ant-table-expanded-row-fixed {
+  margin: 0;
+
+}
+
+.ant-table-tbody > tr > td > .ant-table-expanded-row-fixed > .ant-table-wrapper:only-child .ant-table, .ant-table-tbody > tr > td > .ant-table-wrapper:only-child .ant-table {
+  margin: 0;
+
+}
+
+.ant-spin-container {
+  position: relative;
+  transition: opacity 0.3s;
+
+  border-radius: 10px !important;
+}
+
+
+.ant-collapse {
+  border: none;
+}
+
+.ant-collapse-icon-position-right > .ant-collapse-item > .ant-collapse-header {
+  position: relative;
+  padding: 5px 40px 5px 16px;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  background-color: #E9E9E9;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.ant-collapse > .ant-collapse-item {
+  border-bottom: none;
+}
+
+.ant-collapse-content {
+  border-top: none;
+}
+
+.las la-edit {
+  color: #197C00 !important;
+}
+
+/*.ant-btn-primary {*/
+/*  color: #fff !important;*/
+/*  border-color: #16804C !important;*/
+/*  background: #008738 !important;*/
+/*  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);*/
+/*  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);*/
+/*}*/
+.las la-plus-circle {
+  color: white !important;
+}
+
+.required:after {
+  content: "  *";
+  color: red;
+}
+
+.dialog-title {
+  margin-top: -25px !important;
+}
+
+.CodeMirror {
+  font-family: monospace;
+  height: 100% !important;
+  color: black;
+  direction: ltr;
+}
+
+.mat-mdc-standard-chip {
+  height: 15px !important;
+  padding: 0 !important;
+  width: 100px !important;
+  text-align: center !important;
+}
+
+/*selector */
+
+/*.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {*/
+/*  color: rgba(0, 0, 0, 0.85);*/
+/*  font-weight: 600;*/
+/*  background-color: #7fc377 !important;*/
+/*}*/
+
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: #CAD9E0 !important;
+}
+
+
+/*textFields*/
+/*.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {*/
+/*   border-color: #7fc377;*/
+/*   box-shadow: #7fc377;*/
+/*   border-right-width: 1px;*/
+/*   outline: 0;*/
+/*}*/
+
+
+/*element.style {*/
+/*}*/
+/*.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {*/
+/*  border-color: #7fc377;*/
+/*  box-shadow: #7fc377;*/
+/*  border-right-width: 1px;*/
+/*  outline: 0;*/
+/*}*/
+/*.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {*/
+/*  border-color: #7fc377 !important;*/
+/*}*/
+/*.ant-select:not(.ant-select-customize-input) .ant-select-selector {*/
+/*  border-color: #7fc377 !important;*/
+/*}*/
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
+  color: inherit !important;
+}
+
+.center-panel-searchBar {
+  float: left;
+  width: 432px !important;
+  margin-bottom: 2%;
+  justify-content: flex-start;
+}
+
+.search-field {
+  margin-left: 15% !important;
+
+  float: left;
+  width: 216px !important;
+  justify-content: flex-start;
+}
+
+.heading-text {
+  font-size: 18.89px
+}
+
+.add-auth-button {
+  width: 144px;
+}
+
+.notification-success {
+  background-color: #d4edda;
+  color: #155724;
+  z-index: 1100;
+
+}
+
+.notification-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  z-index: 1100;
+}
+
+.notification-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  z-index: 1100;
+}
+
+.notification-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  z-index: 1100;
+
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0050A0;
+  border-radius: 5px;
+}
+
+.console {
+  height: 280px;
+  background-color: #FAFAFA;
+}
+
+/*.ant-select:not(.ant-select-disabled):hover .ant-select-selector,*/
+/*.ant-select:not(.ant-select-disabled):hover .ant-select-selection-placeholder,*/
+/*.ant-select:not(.ant-select-disabled):hover .ant-select-selection-item,*/
+/*.ant-select:not(.ant-select-disabled):hover .ant-select-selection-search-input {*/
+/*  pointer-events: none !important;*/
+/*}*/
+
+.ant-tooltip-inner {
+  background-color: #388e3c;
+  color: #fff;
+}
+
+.ant-menu.dark-mode{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  font-feature-settings: 'tnum';
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  outline: none;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+}
+.ant-menu{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  font-feature-settings: 'tnum';
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  outline: none;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+.ant-menu-sub.ant-menu-inline.dark-mode {
+  padding: 0;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/*.notification-custom-z-index {*/
+/*  z-index: 9999 !important; !* Set a higher z-index *!*/
+/*}*/
+
+.cdk-overlay-pane {
+  z-index: 10 !important;
+}
+.cdk-overlay-pane {
+  z-index: 10 !important;
+}

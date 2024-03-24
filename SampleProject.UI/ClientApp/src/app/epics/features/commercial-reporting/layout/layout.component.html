@@ -1,0 +1,184 @@
+<mat-sidenav-container class="nav-container pt-3">
+  <mat-sidenav #sidenav class="nav-sidenav pt-3" mode="side" opened="true">
+
+    <div (click)="sidenav.toggle()" class="d-flex justify-content-between mb-2">
+      <div class="d-flex align-items-start ms-2 p-0 mb-1" >
+        <em class="lar la-folder-open" style="font-size: 50px; color: #0050A0"></em>
+<!--        <span nz-icon [nzType]="'slack-square'" [nzTheme]="'outline'" [nzSpin]="true"></span>-->
+        <div  class="mb-1">
+          <div class="fs-5 ms-2 fw-semibold"> Commercial</div>
+          <small class="ms-2 text-secondary"> {{reportingDate | date}} </small>
+        </div>
+      </div>
+      <div class="side-nav-btn-inside" >
+        <em class="las la-angle-left fw-bold text-white"></em>
+      </div>
+    </div>
+    <div>
+      <ul nz-menu nzMode="inline" class="mt-2" style="width: 100%;">
+        <div class="d-flex align-items-center p-0 m-0">
+          <h6 class="ms-2 layout-header-text"
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Download']"
+          > Download </h6>
+        </div>
+
+        <ul>
+          <ul>
+
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Download']"
+              nz-menu-item>
+              <a [routerLink]="['download']"></a> Dashboard
+            </li>
+
+
+            <div class="d-flex align-items-center p-0 m-0">
+              <h6 class="ms-2 layout-header-text"
+                  [appPermission]="['COMMERCIAL_REPORTING_MODULE:Map_and_Verification']"
+              > Map & Verification</h6>
+            </div>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Map_and_Verification']"
+              nz-menu-item routerLinkActive="active">
+              <a routerLink="map-and-verification"></a>Dashboard
+            </li>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Pass_Records']"
+              nz-menu-item  routerLinkActive="active">
+              <a routerLink="map-and-verification-pass-records"></a>Passed Records
+            </li>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Rejected_Records']"
+              nz-menu-item routerLinkActive="active" >
+              <a routerLink="map-and-verification-rejected-records"></a>Rejected Records
+            </li>
+          </ul>
+        </ul>
+        <div class="d-flex align-items-center p-0 m-0">
+          <h6 class="ms-2 layout-header-text"> Data Amending</h6>
+        </div>
+        <ul>
+          <ul>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Data_Amending_Maintenance']"
+              nz-menu-item><a [routerLink]="['data-amend-maintenance']">
+            </a>
+              Maintenance
+            </li>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Data_Amending_Authorization']"
+              nz-menu-item><a [routerLink]="['data-amend-authorization']">
+            </a>
+              Authorization
+            </li>
+          </ul>
+        </ul>
+
+        <div class="d-flex align-items-center p-0 m-0">
+          <h6 class="ms-2 layout-header-text">Bureau Rejects</h6>
+        </div>
+        <ul>
+          <ul>
+
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Bureau_Rejects_Maintenance']"
+              nz-menu-item>
+              <a [routerLink]="['amend-bureau-reject-record']"></a>
+<!--              <a [routerLink]="['under-construction']"></a>-->
+              Maintenance
+            </li>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Bureau_Rejects_Authorization']"
+              nz-menu-item>
+              <a [routerLink]="['reject-data-amend-authorization']"></a>
+<!--              <a [routerLink]="['under-construction']"></a>-->
+              Authorization
+            </li>
+          </ul>
+        </ul>
+
+        <div class="d-flex align-items-center p-0 m-0">
+          <h6 class="ms-2 layout-header-text"
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Bureau_File_Generate']"
+          >Bureau File</h6>
+        </div>
+        <ul>
+          <ul>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Bureau_File_Generate']"
+              nz-menu-item><a [routerLink]="['generate-bureau-file']">
+            </a>
+              Generate
+            </li>
+          </ul>
+        </ul>
+
+        <div class="d-flex align-items-center p-0 m-0">
+          <h6 class="ms-2 layout-header-text"
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Reports_Download']"
+          >Reports</h6>
+
+        </div>
+        <ul>
+          <ul>
+            <li
+              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Reports_Download']"
+              nz-menu-item>
+<!--              <a [routerLink]="['under-construction']"></a>-->
+              <a [routerLink]="['download-reports']"></a>
+              Download
+            </li>
+          </ul>
+        </ul>
+<!--        <div class="d-flex align-items-center p-0 m-0">-->
+<!--          <h6 class="ms-2 layout-header-text"-->
+<!--              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Current_Reporting_Cycle']"-->
+<!--          >Reporting Cycle</h6>-->
+<!--        </div>-->
+<!--        <ul>-->
+<!--          <ul>-->
+<!--            <li-->
+<!--              [appPermission]="['COMMERCIAL_REPORTING_MODULE:Current_Reporting_Cycle']"-->
+<!--              nz-menu-item><a [routerLink]="['close-current-reporting']">-->
+<!--            </a>-->
+<!--              Close Reporting-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </ul>-->
+
+
+
+      </ul>
+    </div>
+  </mat-sidenav>
+
+  <div>
+
+    <div (click)="sidenav.toggle()" *ngIf="true"
+         aria-label="Toggle sidenav" class="toggle">
+      <div *ngIf="!sidenav.opened" class="side-nav-btn">
+        <em class="las la-angle-right fw-bold text-white"></em>
+      </div>
+    </div>
+
+    <div [ngClass]="{'side-nav-open-margin': !sidenav.opened}">
+
+
+      <div class="container mb-3">
+        <div class="row">
+          <nz-breadcrumb nzSeparator=":" style="font-size: 26px">
+            <nz-breadcrumb-item>
+              <i class="las la-home" style="font-size: 26px; font-weight: 600"></i>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
+              <a [routerLink]="breadcrumb.url" class="layout-breadcrumb-item">  {{breadcrumb.label}} </a>
+            </nz-breadcrumb-item>
+          </nz-breadcrumb>
+        </div>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-sidenav-container>
+

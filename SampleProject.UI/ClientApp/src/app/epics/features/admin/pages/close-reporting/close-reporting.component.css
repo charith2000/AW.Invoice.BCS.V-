@@ -1,0 +1,23 @@
+
+.custom-card {
+  display: flex;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+}
+
+.custom-card .card-header {
+  flex: 0 0 auto;
+  background-color: #007bff;
+  color: #fff;
+  padding: 2px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.custom-card .card-body {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 10px;
+}

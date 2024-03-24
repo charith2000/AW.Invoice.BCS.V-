@@ -1,0 +1,20 @@
+<div class="container">
+  <nz-tabset  >
+    <nz-tab nzTitle="Common" *ngIf="hasPermission('ADMIN_MODULE:System_Settings_Authorization')">
+      <app-common-general-authorization ></app-common-general-authorization>
+    </nz-tab>
+    <nz-tab nzTitle="Consumer" *ngIf="hasPermission('ADMIN_MODULE:System_Settings_Authorization')">
+      <app-common-authorization code="CN"></app-common-authorization>
+    </nz-tab>
+    <nz-tab nzTitle="Commercial" *ngIf="hasPermission('ADMIN_MODULE:System_Settings_Authorization')">
+      <app-common-authorization code="CM"></app-common-authorization>
+    </nz-tab>
+    <nz-tab nzTitle="Consumer-DC" *ngIf="hasPermission('ADMIN_MODULE:System_Settings_Authorization')">
+      <app-common-authorization code="CNDC"></app-common-authorization>
+    </nz-tab>
+    <nz-tab nzTitle="Commercial-DC" *ngIf="hasPermission('ADMIN_MODULE:System_Settings_Authorization')">
+      <app-common-authorization code="CMDC"></app-common-authorization>
+
+    </nz-tab>
+  </nz-tabset>
+</div>

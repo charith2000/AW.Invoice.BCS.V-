@@ -1,0 +1,95 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2" style="font-family: sans-serif; font-weight: lighter">Error Log:  {{modifiedFileName}}</p>
+
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times" style="color: #8E0E00"></i>
+      </button>
+    </div>
+  </div>
+
+
+</div>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-4">
+      <div class="text-start">
+        <nz-space style="margin-right: 10px;">
+          No of Records :
+        </nz-space>
+        <nz-space class="text-secondary  fw-semibold">
+          <strong>
+            {{data.numberOfRecords}}
+          </strong>
+        </nz-space>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="text-start">
+        <nz-space style="margin-right: 10px;">
+          No of Facilities :
+        </nz-space>
+        <nz-space class="text-secondary  fw-semibold">
+          <strong>
+                        {{facilityCount}}
+          </strong>
+        </nz-space>
+      </div>
+
+    </div>
+    <div class="col-4">
+      <div class="text-end">
+        <button
+          class="add-auth-button"
+          type="submit"
+          nz-button nzType="primary"
+          (click)="onSubmit()"
+          [disabled]="data.status == 1"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-1">
+
+    <nz-table
+      [nzData]="fileDetail"
+      #tableData
+
+      [nzPageSize]="20" [nzScroll]="{ y: '65vh' }"
+      nzSize="small"
+      nzOuterBordered
+      class="table-height">
+      <thead>
+      <tr>
+        <th class="text-center" nzWidth="20%">Facility No</th>
+        <th class="text-center" nzWidth="10%">CF Errors</th>
+        <th class="text-center" nzWidth="10%">Rep.Segment</th>
+        <th class="text-center" nzWidth="5%">Rep.Status</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of tableData.data;let i = index;">
+        <td class="text-start">{{data.creditFacilityNo}}</td>
+        <td class="text-center">{{data.cfErrors}}</td>
+        <td class="text-center">{{data.reportingId}}</td>
+        <td class="text-center">
+          <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+            {{ data.status == 1 ? 'Reported' : 'Not Available' }}
+          </div>
+        </td>
+
+
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</mat-dialog-content>
+

@@ -1,0 +1,150 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-6 col-md-12">
+      <p class="heading-text">
+        Search Error Code by.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-6 col-md-4 ms-1 me-1">
+          <nz-select
+            nzShowSearch
+            nzPlaceHolder="Select"
+            [(ngModel)]="selectedErrorType"
+            (ngModelChange)="clearInputField();
+             disableSearchButton()"
+            class="center-panel-searchBar"
+          >
+            <nz-option nzLabel="All" nzValue="All"></nz-option>
+            <nz-option nzLabel="Gravity Code" nzValue="Gravity Code"></nz-option>
+            <nz-option nzLabel="Error Code Prefix" nzValue="Error Code Prefix"></nz-option>
+            <nz-option nzLabel="Error Code Suffix" nzValue="Error Code Suffix"></nz-option>
+            <nz-option nzLabel="Error Code" nzValue="Error Code"></nz-option>
+          </nz-select>
+
+      </div>
+
+      <div class="col-3 col-md-2 ms-1 me-1" *ngIf="selectedErrorType !== 'All'">
+        <div>
+          <form nz-form [formGroup]="searchField">
+            <nz-form-item>
+              <nz-form-control >
+                <input type="text"
+                       nz-input
+                       formControlName="inputTextValue"
+                       placeholder={{selectedErrorType}}
+                       [(ngModel)]="inputTextValue"
+                       style="border-color: darkgrey"
+                       class="search-field"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </div>
+      </div>
+      <div class="col-3 col-md-2 ms-1 me-1" *ngIf="selectedErrorType == 'All'">
+        <div>
+          <button
+            nz-button
+            nzType="primary"
+            (click)="onSearch()"
+            class="add-auth-button ms-4"
+          >
+            Search</button>
+        </div>
+      </div>
+      <div class="col-6 col-md-5 ms-1 me-1" *ngIf="selectedErrorType !== 'All'">
+        <div class="error-code-search-button">
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]=" !searchField.valid "
+            (click)="onSearch()"
+            class="add-auth-button ms-5"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+
+
+    <div *ngIf="selectedErrorType != null && initialSearch ">
+      <div class="row">
+        <div class="col-10 me-0 pe-0">
+          <div class="text-start">
+            <div class="input-group" style="width: 432px">
+                <span class="input-group-text border-0" id="search-addon">
+                 <i class="las la-search"></i>
+                </span>
+              <input nz-input type="search" class="form-control" placeholder="Search" aria-label="Search"
+                     aria-describedby="search-addon" [(ngModel)]="filterValue"
+                     (ngModelChange)="applyFilter()" style="height: 30px"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-2 me-0 pe-0">
+          <div class="text-end">
+            <button
+              nz-button
+              nzType="primary"
+              [disabled]="!clickSearch"
+              (click)="openDialog()"
+              class="add-auth-button">
+              <i class="las la-plus-circle me-2"></i> Add New
+            </button>
+          </div>
+        </div>
+
+        <div class="col-sm-12 mt-2">
+          <nz-table
+            [nzData]="(filteredRecodes | async )?? []"
+            #tableData
+            nzSize="small"
+            nzOuterBordered
+            class="table-height"
+
+          >
+            <thead>
+            <tr>
+              <th class="text-center" nzWidth="10%">Error Code</th>
+              <th class="text-center" nzWidth="45%">Message</th>
+              <th class="text-center" nzWidth="10%">Gravity Code</th>
+              <th class="text-center" nzWidth="10%">Status</th>
+              <th class="text-center" nzWidth="15%">Authorize Status</th>
+              <th nzRight class="text-center" nzWidth="10%">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of tableData.data">
+              <td class="text-center">{{ data.code }}</td>
+              <td class="text-start">{{ data.message }}</td>
+              <td class="text-center">{{ data.gravityCode }}</td>
+              <td class="text-center">
+                <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                  {{ data.status == 1 ? 'Active' : 'Inactive' }}
+                </div>
+              </td>
+              <td class="text-center">
+                <div [ngClass]="authorizeStatusChip(data.authorizedStatus)" class="align-items-center text-center p-0 m-0">
+                  {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+                </div>
+              </td>
+              <td nzRight class="text-center" >
+                <button nz-button nzType="text" (click)="openEditDialog(data)" style="background-color: transparent">
+                  <i class="las la-edit" style="color: #0050A0"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+      <!-- end table -->
+    </div>
+  </div>
+</div>

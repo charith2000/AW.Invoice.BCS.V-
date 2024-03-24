@@ -1,0 +1,4 @@
+.table-height {
+  height: calc(100% - 0px);
+  overflow: auto;
+}

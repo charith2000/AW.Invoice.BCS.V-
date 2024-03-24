@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-md-2"></div>
+    <div class="col-6 col-md-8" >
+      <form nz-form [nzLayout] = "'vertical'" [formGroup]="addOrUpdateConsumerGeneralForm">
+        <div class="row">
+          <div class="col-4">
+            <nz-form-item>
+              <nz-form-label class="required">Nature of Data</nz-form-label>
+              <nz-form-control nzHasFeedback nzErrorTip="nature of Data is required">
+                <input nz-input formControlName="natureOfData" required maxlength="3"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-8">
+            <nz-form-item>
+              <nz-form-label class="required">IFF Version</nz-form-label>
+              <nz-form-control nzHasFeedback nzErrorTip="IFF Version is required">
+                <input nz-input formControlName="iffVersion" required maxlength="10"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <nz-form-item>
+          <nz-form-label >Comment</nz-form-label>
+          <nz-form-control nzHasFeedback>
+            <textarea nz-input formControlName="comment"
+                      maxlength="100"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label class="required">DLT File Path</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="DLT File Path is required">
+            <input nz-input formControlName="dltFilePath" required maxlength="100"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label class="required">CRIB Error Log File Path</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="CRIB error log file path is required">
+            <input nz-input formControlName="cribErrorLogPath" required maxlength="100" [readOnly]="true" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <div class="row">
+          <div class="col-6">
+          </div>
+          <div class="col-6">
+            <nz-form-item>
+              <nz-form-label ></nz-form-label>
+              <button
+                class="w-100 me-2"
+                type="submit"
+                nz-button nzType="primary"
+                (click)="onUpdateOrSave()"
+                [disabled]="addOrUpdateConsumerGeneralForm.pristine || !addOrUpdateConsumerGeneralForm.valid || !addOrUpdateConsumerGeneralForm.dirty "
+              >
+                Save
+              </button>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-6 col-md-2"></div>
+  </div>
+</div>

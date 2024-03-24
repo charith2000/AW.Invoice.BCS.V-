@@ -1,0 +1,77 @@
+<nav class="fixed-top mt-1"
+>
+  <div style="width: 66px;">
+    <img src="../../../../../assets/images/logo-white-text.png" alt="logo" style="margin-left: 15px; width: 165px; height:72px"
+    >
+  </div>
+</nav>
+
+
+
+<!--background-image: linear-gradient(to right, #2c3a87, #0373ea);-->
+
+<!--background-image: url('assets/images/bankLogo.png');-->
+
+<body
+
+  style="
+
+background-image: linear-gradient(to right, #2c3a87, #0168FF);
+    background-position: center;
+    background-repeat: no-repeat;
+     background-size: 100% 100%;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+">
+<div class="flex">
+  <h2 class="text-center text-white fw-semibold mb-3" >Welcome to DMS-CRIMS</h2>
+  <div class="card" style="
+  width: 496px;
+   height: 439px;
+    border-radius: 25px;
+
+     background-position: center;
+    background-repeat: no-repeat;
+     background-size: 100% 100%;
+">
+    <div class="card-header"  style="background-color: transparent; border-color: transparent">
+    </div>
+    <div class="text-center">
+      <img src="../../../../../assets/images/loging-lock.png" alt="logo"
+           height="48" width="39">
+    </div>
+    <div class="card-body mt-4" >
+      <h5 class="text-secondary fw-semibold mb-3">Login to your account</h5>
+      <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item >
+          <nz-form-control nzErrorTip="Please input your username!">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text"  nz-input nzSize="large" formControlName="username" placeholder="username"
+                     style="height: 30px"/>
+
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your Password!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="Password"
+                     style="height: 30px"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="w-100" [nzType]="'primary'" style="height: 40px; border-radius: 40px">Log in</button>
+      </form>
+    </div>
+    <div class="card-footer" style="background-color: transparent; border-color: transparent">
+      <div class="text-center">
+        <p class="mt-5" style="color: #0168FF; font-size: small"> DMS CRIMS - Version 1.0.0.0 © 2023-12-13 {{Version}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+

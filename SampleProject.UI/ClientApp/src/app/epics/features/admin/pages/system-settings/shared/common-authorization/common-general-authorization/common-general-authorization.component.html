@@ -1,0 +1,100 @@
+<div class="container" *ngIf="systemSetting.authorizedStatus == 2 ;" >
+  <div class="row" >
+    <div class="col-6 col-md-12">
+      <div class="text-end">
+        <button
+          nz-button nzType="primary"
+          (click)="onOpenConfirmation()"
+        >
+          Authorize
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 col-md-2"></div>
+    <div class="col-6 col-md-8" >
+      <div >
+        <div class="row">
+          <div class="col-4">
+            <nz-form-item>
+              <nz-form-label class="required">Current Reporting Date</nz-form-label>
+              <nz-date-picker [(ngModel)]="currentReportingDate" style="pointer-events: none"></nz-date-picker>
+            </nz-form-item>
+          </div>
+          <div class="col-4">
+
+            <nz-form-label class="required">Next Reporting Date</nz-form-label>
+            <nz-date-picker [(ngModel)]="nextReportingDate" style="pointer-events: none"></nz-date-picker>
+
+          </div>
+        </div>
+
+        <form nz-form [nzLayout] = "'vertical'" [formGroup]="updateCommonSystemSettingForm">
+
+          <nz-form-item>
+            <nz-form-label class="required">Data Provider Name</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Data Provider Name is required">
+              <input nz-input formControlName="dataProviderName" required maxlength="75" [readOnly]="true"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">Data Provider ID</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="CRIB Id is required">
+              <input nz-input formControlName="dataProviderId" required maxlength="10" [readOnly]="true"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">Data Provider Branch ID</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Branch ID is required">
+              <input nz-input formControlName="dataProviderBranchId" required maxlength="10" [readOnly]="true"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">
+              Guarantor Information From
+            </nz-form-label>
+            <nz-select nzPlaceHolder="Select" formControlName="guarantorInformationFrom" nzSize="default" style="pointer-events: none">
+              <nz-option nzLabel="RMS" nzValue="RMS"></nz-option>
+              <nz-option nzLabel="CRIMS" nzValue="CRIMS"></nz-option>
+            </nz-select>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">
+              Suit Information From
+            </nz-form-label>
+            <nz-select nzPlaceHolder="Select" formControlName="suiteInformationFrom" nzSize="default" style="pointer-events: none">
+              <nz-option nzLabel="RMS" nzValue="RMS"></nz-option>
+              <nz-option nzLabel="CRIMS" nzValue="CRIMS"></nz-option>
+            </nz-select>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">Error Log File Path</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Error Log File Path is required">
+              <input nz-input formControlName="errorLogFilePath" required maxlength="75" [readOnly]="true"/>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </div>
+    <div class="col-6 col-md-2"></div>
+  </div>
+</div>
+
+<div class="container" *ngIf="systemSetting.authorizedStatus != 2 ;">
+  <div class="d-flex justify-content-center align-items-center" style="height: 500px">
+<!--    <img ngSrc="assets/no-data-authorization.png" alt="no data for authorize" height="197" width="619">-->
+    <nz-result nzStatus="info"
+               nzTitle="No Data For Authorization"
+
+    >
+
+    </nz-result>
+  </div>
+</div>
+

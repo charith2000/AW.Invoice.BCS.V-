@@ -1,0 +1,94 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Update Data Source </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-content>
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="updateDataSourceForm">
+
+    <div class="row">
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">
+            Segment ID
+          </nz-form-label>
+          <nz-form-control nzHasFeedback >
+            <input nz-input formControlName="segmentId" required [readOnly]="true"  />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">
+            Source Name
+          </nz-form-label>
+          <nz-form-control nzHasFeedback>
+            <input nz-input formControlName="sourceName" required maxlength="20" [readOnly]="true" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label nzFor="Status" class="required">Connection Name</nz-form-label>
+      <nz-form-control nzErrorTip="Please select the status!">
+
+        <nz-select nzPlaceHolder="Select" formControlName="connectionName" nzSize="default">
+          <nz-option *ngFor="let o of connectionName | async " [nzValue]="o.key"
+                     [nzLabel]="o.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Table Name
+      </nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="tableName" required/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="Status" class="required">Status</nz-form-label>
+      <nz-form-control nzErrorTip="Please select the status!">
+        <nz-select
+          id="Status"
+          formControlName="status"
+        >
+          <nz-option nzValue="1" nzLabel="Active"></nz-option>
+          <nz-option nzValue="2" nzLabel="Inactive"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="d-flex">
+      <button
+        class="w-100 me-3"
+        type="submit"
+        nz-button nzType="primary"
+        (click)="openConfirmation()"
+        [disabled]="!updateDataSourceForm.valid">
+        Update
+      </button>
+      <button
+        class="w-100 me-3"
+        nz-button nzType="default" (click)="handleCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+
+
+

@@ -1,0 +1,50 @@
+<!--<div class="modal-content {{ getNotificationClass() }}">-->
+<!--  <div class="modal-header m-2">-->
+<!--    <h5 class="modal-title">{{ data.title }}</h5>-->
+<!--    <button  mat-icon-button (click)="closeDialog()">-->
+<!--      <i class="las la-times"></i>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div class="modal-body">-->
+<!--    <p>{{ data.message }}</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="custom-card ">
+  <div class="card-body m-0 p-0">
+    <div class="row m-0 p-0">
+      <div class="col-3 m-0 p-0 custom-card d-flex align-items-center justify-content-center {{ getNotificationClass() }}">
+
+          <i class="las {{getIconForType()}}" style="font-size: 50px"></i>
+
+      </div>
+      <div class="col-9 m-0 p-0">
+        <div class="row m-0 p-0">
+          <div class="col-8 m-0 p-0">
+            <div class="text-start">
+              <h5 class="modal-title {{ getTittleColor() }} mt-2 ms-2">{{ data.title }}</h5>
+            </div>
+          </div>
+          <div class="col-4 m-0 p-0">
+            <div class="text-end m-0 p-0">
+              <button mat-icon-button (click)="closeDialog()">
+                <i class="las la-times"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+        <div class="row m-0 p-0">
+          <div class="text-start m-0 p-0" style="white-space: pre-line; word-break: break-word;">
+            <p class="ms-2">{{ data.message }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

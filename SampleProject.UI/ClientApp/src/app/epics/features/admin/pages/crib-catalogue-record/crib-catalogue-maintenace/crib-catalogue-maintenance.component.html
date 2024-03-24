@@ -1,0 +1,148 @@
+<div class="container" >
+  <div class="row">
+    <p class="heading-text">
+      Select a Catalogue Type.
+    </p>
+    <div>
+      <nz-select [(ngModel)]="selectedCatalogueType"
+                 (change)="onSelectCatalogueType($event)"
+                 (ngModelChange)="onSelectCatalogueType($event)"
+                 nzShowSearch
+                 class="center-panel-searchBar"
+                 nzAllowClear [nzDropdownRender]="renderTemplate"
+
+      >
+        <nz-option *ngFor="let o of catalogueTypes | async " [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+      </nz-select>
+      <ng-template #renderTemplate>
+      </ng-template>
+    </div>
+
+
+    <div *ngIf="selectedCatalogueType != null ">
+      <div class="row">
+        <div class="col-10 me-0 pe-0">
+          <div class="text-start">
+            <div class="input-group" style="width: 432px">
+                <span class="input-group-text border-0" id="search-addon">
+                 <i class="las la-search"></i>
+                </span>
+              <input nz-input type="search" class="form-control" placeholder="Search" aria-label="Search"
+                     aria-describedby="search-addon" [(ngModel)]="filterValue"
+                     (ngModelChange)="applyFilter()" style="height: 30px"
+                     nz-tooltip
+                     nzTooltipPlacement="rightTop"
+                     nzTooltipTitle="Search a Record From the Table"
+                     nzTooltipColor="#388e3c"
+
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-2 ms-0 ps-0">
+          <div class="text-end">
+            <button nz-button
+                    nzType="primary"
+                    (click)="openAddRecordDialog()"
+                    class="add-auth-button"
+                    nz-tooltip
+                    nzTooltipTitle="Add New Catalogue Record"
+                    nzTooltipColor="#388e3c"
+            >
+              <i class="las la-plus-circle me-2"></i> Add New
+            </button>
+          </div>
+
+        </div>
+        <div class="col-sm-12 mt-2">
+
+          <nz-table
+            [nzData]="(filteredCatalogueRecodes | async )?? []"
+            #tableData
+            nzSize="small"
+            nzOuterBordered
+            [nzPageSize]="10" [nzScroll]="{ y: '540px' }"
+
+          >
+            <thead>
+            <tr>
+              <th class="text-center" nzWidth="10%"
+                  [style.background-color]="highlightedColumnIndex === 0 ? 'lightgray' : ''"
+                  (click)="onColumnHeaderClick(0)"
+
+              >CRIB Id
+              </th>
+              <th class="text-center" nzWidth="10%"
+                  [style.background-color]="highlightedColumnIndex === 1 ? 'lightgray' : ''"
+                  (click)="onColumnHeaderClick(1)"
+              >Bank Id</th>
+              <th class="text-center" nzWidth="45%"
+                  [style.background-color]="highlightedColumnIndex === 2 ? 'lightgray' : ''"
+                  (click)="onColumnHeaderClick(2)"
+              >Description</th>
+              <th class="text-center" nzWidth="10%"
+                  [style.background-color]="highlightedColumnIndex === 3 ? 'lightgray' : ''"
+                  (click)="onColumnHeaderClick(3)"
+              >Status</th>
+              <th class="text-center" nzWidth="15%"
+                  [style.background-color]="highlightedColumnIndex === 4 ? 'lightgray' : ''"
+                  (click)="onColumnHeaderClick(4)"
+              >Authorize Status</th>
+              <th nzRight class="text-center" nzWidth="10%">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+              *ngFor="let data of tableData.data; let i = index"
+              [ngClass]="{'clicked': selectedRowIndex === i }"
+              (click)="onRowClick(i)"
+            >
+              <td class="text-center"
+                  [style.background-color]="highlightedColumnIndex === 0 ? ' #CAD9E0' : ''"
+
+              >{{ data.cribId }}</td>
+              <td class="text-center"
+                  [style.background-color]="highlightedColumnIndex === 1 ? ' #CAD9E0' : ''"
+                  >{{ data.bankId }}</td>
+              <td class="text-start"
+                  [style.background-color]="highlightedColumnIndex === 2 ? ' #CAD9E0' : ''"
+              >{{ data.description }}</td>
+              <td class="text-center"
+                  [style.background-color]="highlightedColumnIndex === 3 ? ' #CAD9E0' : ''"
+              >
+                <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                  {{ data.status == 1 ? 'Active' : 'Inactive' }}
+                </div>
+              </td>
+              <td class="text-center"
+                  [style.background-color]="highlightedColumnIndex === 4 ? ' #CAD9E0' : ''"
+                  (click)="onColumnHeaderClick(4)"
+              >
+                <div [ngClass]="authorizeStatusChip(data.authorizedStatus)"
+                     class="align-items-center text-center p-0 m-0">
+                  {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+                </div>
+              </td>
+              <td nzRight class="text-center">
+                <button
+                  nz-button
+                  nzType="text"
+                  (click)="openEditRecordDialog(data, i)"
+                  nz-tooltip
+                  nzTooltipTitle="Edit or View"
+                  nzTooltipColor="#388e3c"
+                >
+                  <i class="las la-edit" style="color: #197C00"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

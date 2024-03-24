@@ -1,0 +1,30 @@
+:root {
+  --background-color-light: white;
+  --text-color-light: black;
+  --button-background-color-light: #0050A0;
+}
+:root.dark-mode {
+  --background-color-dark: #222222;
+  --text-color-dark: #ffffff;
+  --button-background-color-dark: #0050A0;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  border-radius: 100px;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+.custom-dialog-container .mat-dialog-container.dark-mode {
+  border-radius: 100px;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+.nav.navbar.navbar-expand-sm.navbar-toggleable-sm{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.nav.navbar.navbar-expand-sm.navbar-toggleable-sm.dark-mode{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-md-2" >
+      <div class="text-center">
+        <nz-table
+          [nzData]="(reportingSegments | async )?? []"
+          #tableData
+          nzSize="small"
+          nzShowPagination = "false"
+          (pinchmove)="true"
+        >
+          <thead>
+          <tr>
+            <th class="text-start" nzWidth="90%">Segment Name</th>
+            <th nzRight class="text-center" nzWidth="10%" >Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of tableData.data let i = index"
+              [ngClass]="{'clicked': selectedSegmentId === data.reportingSegmentId}"
+              (click)="onShowSegmentFields(data.reportingSegmentFields, data.reportingSegmentId)">
+            <td class="text-start" >{{data.segmentName}}</td>
+            <td class="text-center">
+              <button
+                nz-button
+                nzType="text"
+                (click)="onShowSegmentFields(data.reportingSegmentFields, data.reportingSegmentId)"
+                style="background-color: transparent" >
+                <i class="las la-sync-alt" style="color: #0050A0"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <div  class="col-6 col-md-10">
+      <div *ngIf="selectedSegmentId else noData" class="container">
+        <nz-tabset>
+          <nz-tab nzTitle="Field">
+            <app-common-segment-fields [segmentId]="selectedSegmentId" ></app-common-segment-fields>
+          </nz-tab>
+          <nz-tab nzTitle="Data Source">
+            <app-common-data-source [segmentId]="selectedSegmentId" ></app-common-data-source>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noData>
+  <nz-result nzStatus="info"
+             nzTitle="Please select a segment name to continue the process.">
+  </nz-result>
+</ng-template>

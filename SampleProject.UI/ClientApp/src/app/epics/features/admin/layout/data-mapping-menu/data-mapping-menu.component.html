@@ -1,0 +1,93 @@
+<!--<li-->
+<!--  [appPermission]="['ADMIN_MODULE:Data_Mapping']"-->
+<!--  *ngFor="let item of navigationItems"-->
+<!--  nz-submenu-->
+<!--  [(nzOpen)]="openMap.sub1"-->
+<!--  (nzOpenChange)="openHandler('sub4')"-->
+<!--  nzTitle="{{-->
+<!--    item.name == 'CommercialChequeDishonour' ? 'Commercial DC' :-->
+<!--    item.name == 'ConsumerChequeDishonour' ? 'Consumer DC' : item.name}}"-->
+<!--  nzIcon="code-sandbox"-->
+
+<!--&gt;-->
+<!--  <ul>-->
+<!--    <li-->
+<!--      *ngFor="let item1 of getReportingSegments(item.reportingSegments)"-->
+<!--      nz-submenu-->
+<!--      nzTitle="{{formatString(item1.segmentName)}}"-->
+<!--    >-->
+<!--      <ul *ngFor="let item2 of item1.reportingSegmentDataSources"-->
+
+<!--      >-->
+<!--        <li nz-menu-item-->
+<!--            (click)="activateItem(item2)"-->
+<!--            [class.active-item]="activeItem === item2"-->
+<!--        >-->
+<!--          <a [routerLink]="['test-connection', item2.reportingSegmentDataSourceId]"-->
+
+<!--          >-->
+<!--        </a>-->
+<!--          {{item2.sourceName}}-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </li>-->
+
+<!--  </ul>-->
+
+<!--</li>-->
+
+<!--<li nz-menu-item-->
+<!--    [appPermission]="['ADMIN_MODULE:Data_Mapping_Authorization']"-->
+<!--    (click)="activateItem('Authorization')"-->
+<!--    [ngClass]="{ 'active-item': activeItem === 'Authorization' }"-->
+<!--&gt;<a [routerLink]="['data-mapping-authorization']">-->
+<!--</a>-->
+<!--  Authorization-->
+<!--</li>-->
+
+
+<li nz-submenu nzTitle="Source Configuration"
+    nzIcon="code-sandbox"
+
+>
+  <ul  nz-submenu nzTitle="Maintenance" >
+<ul
+  nz-submenu
+  [appPermission]="['ADMIN_MODULE:Data_Mapping']"
+  *ngFor="let item of navigationItems"
+  nzTitle="{{
+      item.name == 'CommercialChequeDishonour' ? 'Commercial DC' :
+      item.name == 'ConsumerChequeDishonour' ? 'Consumer DC' : item.name}}"
+
+>
+  <ul>
+    <li
+      *ngFor="let item1 of getReportingSegments(item.reportingSegments)"
+      nz-submenu
+      nzTitle="{{ formatString(item1.segmentName) }}"
+    >
+      <ul *ngFor="let item2 of item1.reportingSegmentDataSources">
+        <li nz-menu-item
+            (click)="activateItem(item2)"
+            [class.active-item]="activeItem === item2"
+        >
+          <a [routerLink]="['test-connection', item2.reportingSegmentDataSourceId]"></a>
+          {{item2.sourceName}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</ul>
+  </ul>
+  <ul nz-menu-item
+      [appPermission]="['ADMIN_MODULE:Data_Mapping_Authorization']"
+      (click)="activateItem('Authorization')"
+      [ngClass]="{ 'active-item': activeItem === 'Authorization' }"
+  >
+    <a [routerLink]="['data-mapping-authorization']"></a>
+    Authorization
+  </ul>
+</li>
+
+
+

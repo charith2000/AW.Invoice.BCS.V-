@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="text-end">
+      <button
+        nz-button
+        nzType="primary"
+        class="bg-danger"
+        style="color: white"
+        (click)="openConfirmation()"
+        [disabled]="this.consumerStatus =='Open' ||
+  this.commercialStatus == 'Open' ||
+  this.commercialDcStatus == 'Open' ||
+  this.consumerDcStatus == 'Open' "
+
+      >
+        Close Current Reporting Period
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row mb-5">
+    <div class="col-4">
+      <h6 class="text-secondary text-uppercase fw-semibold mb-3">
+        Current Reporting Period
+      </h6>
+      <div class="custom-card mb-2">
+        <div class="card-header" style="background-color: #197C00;">
+        </div>
+        <div class="card-body">
+          <nz-statistic [nzValue]="(fromDate | date)!" [nzTitle]="'From'"></nz-statistic>
+        </div>
+      </div>
+      <div class="custom-card mt-2">
+        <div class="card-header" style="background-color: #8E0E00;">
+        </div>
+        <div class="card-body">
+
+          <nz-statistic [nzValue]="(toDate | date)!" [nzTitle]="'To'"></nz-statistic>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-8">
+      <h6 class="text-secondary text-uppercase fw-semibold mb-3">
+        Reporting Segments
+      </h6>
+      <div class="row mb-2">
+        <div class="col-6">
+          <div class="custom-card" [ngStyle]="{ borderColor:  consumer ? 'red' : 'green'}">
+            <div class="card-header" [ngStyle]="{ backgroundColor:  consumer ? 'red' : 'green'}">
+            </div>
+            <!--            [ngStyle]="{ backgroundImage:  consumer ? 'red' : ' linear-gradient(to right, #2c3a87, #0373ea)'}"-->
+            <div class="card-body">
+              <nz-row [nzGutter]="16">
+                <nz-col [nzSpan]="12">
+                  <nz-statistic [nzValue]="consumerStatus" [nzTitle]="'Consumer Reporting'"></nz-statistic>
+                </nz-col>
+
+              </nz-row>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="custom-card" [ngStyle]="{ borderColor:  commercial ? 'red' : 'green'}">
+            <div class="card-header" [ngStyle]="{ backgroundColor:  commercial ? 'red' : 'green'}">
+            </div>
+            <div class="card-body">
+              <nz-row [nzGutter]="16">
+                <nz-col [nzSpan]="12">
+                  <nz-statistic [nzValue]="commercialStatus" [nzTitle]="'Commercial Reporting'"></nz-statistic>
+                </nz-col>
+              </nz-row>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-6">
+          <div class="custom-card" [ngStyle]="{ borderColor:  consumerDc ? 'red' : 'green'}">
+            <div class="card-header" [ngStyle]="{ backgroundColor:  consumerDc ? 'red' : 'green'}">
+            </div>
+            <div class="card-body">
+              <nz-row [nzGutter]="16">
+                <nz-col [nzSpan]="12">
+                  <nz-statistic [nzValue]="consumerDcStatus" [nzTitle]="'Consumer DC Reporting'"></nz-statistic>
+                </nz-col>
+
+              </nz-row>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="custom-card" [ngStyle]="{ borderColor:  commercialDc ? 'red' : 'green'}">
+            <div class="card-header" [ngStyle]="{ backgroundColor:  commercialDc ? 'red' : 'green'}">
+            </div>
+            <div class="card-body">
+              <nz-row [nzGutter]="16">
+                <nz-col [nzSpan]="12">
+                  <nz-statistic [nzValue]="commercialDcStatus" [nzTitle]="'Commercial DC Reporting'"></nz-statistic>
+                </nz-col>
+              </nz-row>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

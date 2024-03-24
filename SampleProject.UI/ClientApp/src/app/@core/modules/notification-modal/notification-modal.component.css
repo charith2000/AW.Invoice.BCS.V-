@@ -1,0 +1,104 @@
+/*.custom-card {*/
+/*  display: flex;*/
+/*  background-color: #f0f0f0;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 5px;*/
+/*  !*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*!*/
+/*}*/
+
+/*.custom-card .card-header {*/
+/*  flex: 0 0 auto;*/
+/*  background-color: #007bff;*/
+/*  color: #fff;*/
+/*  padding: 2px;*/
+/*  border-top-left-radius: 5px;*/
+/*  border-bottom-left-radius: 5px;*/
+/*}*/
+
+/*.custom-card .card-body {*/
+/*  flex: 1;*/
+/*  background-color: #ffffff;*/
+/*  padding: 10px;*/
+/*}*/
+
+
+.modal-content {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  /*margin-top: 10px; !* Adjust as needed *!*/
+
+}
+
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: transparent !important;
+}
+
+.modal-header {
+  flex: 0 0 auto;
+  background-color: #007bff;
+  color: #fff;
+  padding: 2px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  /*padding: 1rem;*/
+  /*border-bottom: 1px solid #dee2e6;*/
+}
+
+.modal-title {
+  margin-bottom: 0;
+}
+
+.close {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.close:hover {
+  opacity: 0.75;
+}
+
+.modal-body {
+  /*padding: 1rem;*/
+}
+
+/* Add your notification styles here */
+.notification-success {
+  background-color: #72B45F;
+
+  z-index: 1100;
+}
+
+.notification-error {
+  background-color: #f8d7da;
+
+  z-index: 1100;
+}
+
+.notification-info {
+  background-color: #d1ecf1;
+
+  z-index: 1100;
+}
+
+.notification-warning {
+  background-color: #fff3cd;
+
+  z-index: 1100;
+}
+
+.notification-success-title{
+  color: #155724;
+}
+.notification-error-title{
+  color: #721c24;
+}
+.notification-info-title{
+  color: #0c5460;
+}
+.notification-warning-title{
+  color: #856404;
+}

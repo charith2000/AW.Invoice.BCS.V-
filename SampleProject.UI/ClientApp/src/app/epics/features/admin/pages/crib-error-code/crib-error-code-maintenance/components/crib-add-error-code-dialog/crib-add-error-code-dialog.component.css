@@ -1,0 +1,26 @@
+/*:host {*/
+/*  display: block;*/
+/*  background: #fff;*/
+/*  border-radius: 8px;*/
+/*  padding: 16px;*/
+/*  min-width: 500px;*/
+/*  max-width: 500px;*/
+
+/*}*/
+
+/*@keyframes custom-dialog-enter {*/
+/*  from {*/
+/*    transform: scale(0) rotate(360deg);*/
+/*  }*/
+
+/*  to {*/
+/*    transform: none;*/
+/*  }*/
+/*}*/
+
+/*.popover-heading{*/
+/*  margin-left: 1%;*/
+
+/*  margin-bottom: 10%;*/
+/*}*/
+

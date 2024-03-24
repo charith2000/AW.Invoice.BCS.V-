@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="col-10 me-0 pe-0 mb-1">
+    <div class="text-start">
+      <div class="input-group" style="width: 432px">
+                <span class="input-group-text border-0" id="search-addon">
+                 <i class="las la-search"></i>
+                </span>
+        <input nz-input type="search" class="form-control" placeholder="Search by field name" aria-label="Search"
+               aria-describedby="search-addon" [(ngModel)]="filterValue"
+               (ngModelChange)="applyFilter()" style="height: 30px"/>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <nz-table
+      [nzData]="(filteredRecodes | async) ?? [] "
+      #tableData
+      nzSize="small"
+      nzOuterBordered
+      class="pagination-lg"
+      [nzPageSize]="1000" [nzScroll]="{ y: '620px' }"
+      (nzPageIndexChange)="updateCurrentPage($event)"
+    >
+      <thead>
+      <tr>
+        <th class="text-center" nzWidth="10%">No</th>
+        <th class="text-center" nzWidth="25%"
+            [style.background-color]="highlightedColumnIndex === 0 ? 'lightgray' : ''"
+            (click)="onColumnHeaderClick(0)"
+        >Field Name</th>
+        <th class="text-center" nzWidth="25%"
+            [style.background-color]="highlightedColumnIndex === 1 ? 'lightgray' : ''"
+            (click)="onColumnHeaderClick(1)"
+        >Field Option</th>
+        <th class="text-center" nzWidth="20%"
+            [style.background-color]="highlightedColumnIndex === 2 ? 'lightgray' : ''"
+            (click)="onColumnHeaderClick(2)"
+        >Field Type</th>
+        <th class="text-center" nzWidth="15%"
+            [style.background-color]="highlightedColumnIndex === 3 ? 'lightgray' : ''"
+            (click)="onColumnHeaderClick(3)"
+        >Length</th>
+        <th class="text-center" nzWidth="25%"
+            [style.background-color]="highlightedColumnIndex === 4 ? 'lightgray' : ''"
+            (click)="onColumnHeaderClick(4)"
+        >Catalogue Type</th>
+        <th class="text-center" nzWidth="40%"
+            [style.background-color]="highlightedColumnIndex === 5 ? 'lightgray' : ''"
+            (click)="onColumnHeaderClick(5)"
+        >Description</th>
+        <th class="text-center" nzWidth="15%">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        *ngFor="let data of tableData.data; let i = index;"
+        [ngClass]="{'clicked': selectedRowIndex === i}"
+        (click)="onRowClick(i)"
+      >
+        <td class="text-center">{{(currentPage - 1) * pageSize + i + 1}}</td>
+        <td class="text-start"
+            [style.background-color]="highlightedColumnIndex === 0 ? ' #CAD9E0' : ''"
+        >{{data.name}}</td>
+        <td class="text-start"
+            [style.background-color]="highlightedColumnIndex === 1 ? ' #CAD9E0' : ''"
+        >{{data.options}}</td>
+        <td class="text-center"
+            [style.background-color]="highlightedColumnIndex === 2 ? ' #CAD9E0' : ''"
+        >{{data.type}}</td>
+        <td class="text-center"
+            [style.background-color]="highlightedColumnIndex === 3 ? ' #CAD9E0' : ''"
+        >{{data.length}}</td>
+        <td class="text-center"
+            [style.background-color]="highlightedColumnIndex === 4 ? ' #CAD9E0' : ''"
+        >{{data.catalogueType}}</td>
+        <td class="text-start"
+            [style.background-color]="highlightedColumnIndex === 5 ? ' #CAD9E0' : ''"
+        >{{data.description}}</td>
+        <td nzRight class="text-center">
+          <button
+            nz-button
+            nzType="text"
+            (click)="openEdit(data, i)">
+            <i class="las la-edit" style="color: #0050A0"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

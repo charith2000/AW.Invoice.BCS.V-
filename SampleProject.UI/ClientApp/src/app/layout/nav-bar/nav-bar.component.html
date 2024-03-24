@@ -1,0 +1,112 @@
+<nav
+  class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow"
+>
+<!--  <div class="row">-->
+<!--    <div class="col-sm-10">-->
+<!--    </div>-->
+  <div style="width: 66px;">
+    <img src="assets/images/bankLogo.png" alt="logo" style="margin-left: 15px; width: 140px; height:48px"
+         height="1006" width="2560">
+  </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        [ngClass]="{ show: isExpanded }"
+      >
+        <ul class="navbar-nav flex-grow" style="margin-right: 15px">
+
+          <li class="nav-item">
+            <div class="mt-3" >
+              <h5>
+                <strong>{{ currentUser}}</strong>
+              </h5>
+
+            </div>
+          </li>
+          <li class="nav-item">
+            <div>
+              <button mat-icon-button [disableRipple]="true"
+                      aria-label="Example icon button with a vertical three dot icon" [matMenuTriggerFor]="menu">
+<!--                  <span nz-icon nzType="menu" nzTheme="outline">-->
+<!--                  </span>-->
+                <i class="las la-bars"></i>
+              </button>
+              <mat-menu #menu="matMenu"
+
+              >
+<!--                [appPermission]="['ADMIN_MODULE:CRIB_Catalogue_Maintenance']" [checkForPrefix]="true"-->
+                <a
+                  *ngIf="hasPermission('ADMIN_MODULE')"
+                  mat-menu-item
+                  routerLink="./admin"
+                > Admin</a>
+                <a
+                  *ngIf="hasPermission('CONSUMER_REPORTING_MODULE')"
+                  mat-menu-item
+                  routerLink="./consumer"
+                  (click)="checkSessionIsAvailable('CN')"
+                >
+                  Consumer Reporting
+                </a>
+<!--                need to change -->
+                <a
+                  *ngIf="hasPermission('COMMERCIAL_REPORTING_MODULE')"
+                  mat-menu-item
+                  routerLink="./commercial"
+                  (click)="checkSessionIsAvailable('CM')"
+                >
+                  Commercial Reporting
+                </a>
+              </mat-menu>
+            </div>
+          </li>
+<!--          <li class="nav-item">-->
+<!--            <div>-->
+<!--              <button mat-icon-button aria-label="Example icon " [matMenuTriggerFor]="notification">-->
+<!--                <span nz-icon nzType="bell" nzTheme="outline"></span>-->
+<!--              </button>-->
+<!--              <mat-menu #notification="matMenu">-->
+<!--                <a mat-menu-item> Notifications go here</a>-->
+<!--              </mat-menu>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--          <button (click)="toggleColorMode()">Toggle Color Mode</button>-->
+
+
+<!--              <button mat-icon-button aria-label="Example " [matMenuTriggerFor]="userProfile">-->
+<!--&lt;!&ndash;                <span nz-icon nzType="user" nzTheme="outline"></span>&ndash;&gt;-->
+<!--                <i class="las la-user-edit"></i>-->
+<!--&lt;!&ndash;                <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>&ndash;&gt;-->
+<!--              </button>-->
+<!--              <mat-menu #userProfile="matMenu">-->
+<!--                <a mat-menu-item>{{ currentUser}}</a>-->
+<!--              </mat-menu>-->
+
+
+          <li class="nav-item">
+            <div>
+              <button
+                mat-icon-button
+                aria-label="Example"
+                (click)="logOut()"
+              >
+                <i class="las la-sign-out-alt"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+<!--  </div>-->
+</nav>
+

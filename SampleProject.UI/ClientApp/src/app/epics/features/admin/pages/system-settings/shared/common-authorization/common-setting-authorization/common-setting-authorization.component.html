@@ -1,0 +1,43 @@
+<div class="container">
+  <form nz-form [nzLayout] = "'vertical'" [formGroup]="authorizeConsumerGeneralForm">
+    <div class="row">
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">Nature of Data</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="Nature of data is required">
+            <input nz-input formControlName="natureOfData" required [readOnly]="true" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">IFF Version</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="IFF version is required">
+            <input nz-input formControlName="iffVersion" required [readOnly]="true" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label class="required">Comment</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Comment is required">
+        <textarea nz-input formControlName="comment" required [readOnly]="true" ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">DLT File Path</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="DLT file path is required">
+        <input nz-input formControlName="dltFilePath" required [readOnly]="true" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">CRIB Error Log File Path</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Log file path is required">
+        <input nz-input formControlName="cribErrorLogPath" required [readOnly]="true" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

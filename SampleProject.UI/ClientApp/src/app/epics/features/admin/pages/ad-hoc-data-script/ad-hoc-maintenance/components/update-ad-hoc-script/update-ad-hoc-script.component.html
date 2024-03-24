@@ -1,0 +1,87 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Update Ad-Hoc Data Script</p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div mat-dialog-content>
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="updateAdHocDataForm">
+        <nz-form-label>
+          Data Amending Area
+        </nz-form-label>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback>
+                <input nz-input formControlName="dataAmendingArea"
+               [readOnly]="true" />
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item>
+          <nz-form-label class="required">Description</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="Message is required">
+            <textarea nz-input formControlName="description" required></textarea>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label class="required">
+            Status
+          </nz-form-label>
+          <nz-select nzPlaceHolder="Select the Status" formControlName="status" nzSize="default">
+            <nz-option nzLabel="Active" nzValue="1"></nz-option>
+            <nz-option nzLabel="Inactive" nzValue="2"></nz-option>
+          </nz-select>
+        </nz-form-item>
+
+
+        <div class="card">
+
+          <div class="card-header">
+            Query
+          </div>
+          <div class="card-body" style="height: 475px">
+            <ngx-codemirror
+
+              formControlName="query"
+              [options]="options"
+            ></ngx-codemirror>
+          </div>
+        </div>
+  </form>
+</div>
+<mat-dialog-actions align="center">
+  <div class="d-flex">
+    <button
+      class="me-1"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      type="submit"
+      nz-button nzType="primary"
+      [disabled]="!updateAdHocDataForm.valid || !updateAdHocDataForm.dirty"
+      (click)="onTestQuery()"
+    >
+      Verify & Update
+    </button>
+    <button
+      class="ms-2"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      nz-button nzType="default" (click)="handleCancel()">
+      Cancel
+    </button>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,32 @@
+/*:host {*/
+/*    display: block;*/
+/*    background: #fff;*/
+/*    border-radius: 8px;*/
+/*    padding: 16px;*/
+/*    min-width: 500px;*/
+/*    max-width: 500px;*/
+
+/*  }*/
+
+/*  @keyframes custom-dialog-enter {*/
+/*    from {*/
+/*      transform: scale(0) rotate(360deg);*/
+/*    }*/
+
+/*    to {*/
+/*      transform: none;*/
+/*    }*/
+/*  }*/
+
+/*  .popover-heading{*/
+/*    margin-left: 40%;*/
+
+/*    margin-bottom: 10%;*/
+/*  }*/
+
+
+/*.dialog-title {*/
+/*  display: flex !important;*/
+/*  justify-tableConnection: space-between !important;;*/
+/*  align-items: center !important;;*/
+/*}*/

@@ -1,0 +1,89 @@
+<div class="container">
+  <div>
+    <div class="row" >
+      <div class="text-end me-1"
+      >
+        <button
+          nz-button nzType="primary"
+          [disabled]="isButtonDisabled"
+          (click)="onOpenConfirmation()"
+          class="add-auth-button"
+          nz-tooltip
+          nzTooltipPlacement="leftTop"
+          nzTooltipTitle="Click hear to Authorize"
+        >
+          Authorize
+        </button>
+      </div>
+      <div class="col-sm-12 mt-2 me-0 pe-0">
+        <nz-table
+          [nzData]="(catalogueRecodes | async) ?? []"
+          #tableData
+          nzSize="small"
+          nzOuterBordered
+          class="table table-hover"
+          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+          <thead>
+          <tr>
+            <th
+              [nzChecked]="checked"
+              [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="onAllChecked($event)"
+              nzWidth="5%"
+              nz-tooltip
+              nzTooltipPlacement="leftTop"
+              nzTooltipTitle="Select all"
+              nzTooltipColor="#388e3c"
+            >
+            </th>
+            <th class="text-center" nzWidth="15%">Catalogue</th>
+            <th class="text-center" nzWidth="10%">CRIB Id</th>
+            <th class="text-center" nzWidth="10%">Bank Id</th>
+            <th class="text-center" nzWidth="35%">Description</th>
+            <th class="text-center" nzWidth="10%">Status</th>
+            <th class="text-center" nzWidth="15%">Authorize Status</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of tableData.data; let i = index"
+              [ngClass]="{'clicked': selectedRowIndex === i}"
+              (click)="onRowClick(i)"
+          >
+            <td
+              [nzChecked]="setOfCheckedId.has(data.catalogueRecordId)"
+              (nzCheckedChange)="onItemChecked(data.catalogueRecordId, $event)"
+              nz-tooltip
+              nzTooltipPlacement="leftTop"
+              nzTooltipTitle="Select"
+              nzTooltipColor="#388e3c"
+
+            >
+            </td>
+            <td class="text-start">{{ this.formatString(data.catalogueType)}}</td>
+            <td class="text-center">{{ data.cribId }}</td>
+            <td class="text-center">{{ data.bankId }}</td>
+            <td class="text-start">{{ data.description }}</td>
+            <td class="text-center">
+              <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                {{ data.status == 1 ? 'Active' : 'Inactive' }}
+              </div>
+            </td>
+            <td class="text-center">
+              <div [ngClass]="authorizeStatusChip(data.authorizedStatus)" class="align-items-center text-center p-0 m-0">
+                {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+              </div>
+            </td>
+
+
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

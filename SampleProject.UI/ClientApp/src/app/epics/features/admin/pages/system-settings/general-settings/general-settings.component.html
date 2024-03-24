@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-md-2"></div>
+    <div class="col-6 col-md-8" >
+      <div mat-dialog-content>
+
+        <div class="row">
+          <div class="col-4">
+            <nz-form-item>
+              <nz-form-label class="required">Current Reporting Date</nz-form-label>
+              <nz-date-picker [(ngModel)]="currentReportingDate"
+                              (ngModelChange)="onChange($event)"
+                              [nzAllowClear]="false"
+                              ></nz-date-picker>
+            </nz-form-item>
+          </div>
+          <div class="col-4">
+
+              <nz-form-label class="required">Next Reporting Date</nz-form-label>
+              <nz-date-picker [(ngModel)]="nextReportingDate" (ngModelChange)="onChange($event)" style="pointer-events: none"></nz-date-picker>
+
+          </div>
+        </div>
+
+        <form nz-form [nzLayout] = "'vertical'" [formGroup]="updateCommonSystemSettingForm">
+
+          <nz-form-item>
+            <nz-form-label class="required">Data Provider Name</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Data Provider Name is required">
+              <input nz-input formControlName="dataProviderName" required maxlength="75"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">Data Provider ID</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="CRIB Id is required">
+              <input nz-input formControlName="dataProviderId" required maxlength="10"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">Data Provider Branch ID</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Branch ID is required">
+              <input nz-input formControlName="dataProviderBranchId" required maxlength="10"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">
+              Guarantor Information From
+            </nz-form-label>
+            <nz-select nzPlaceHolder="Select" formControlName="guarantorInformationFrom" nzSize="default">
+              <nz-option nzLabel="RMS" nzValue="RMS"></nz-option>
+              <nz-option nzLabel="CRIMS" nzValue="CRIMS"></nz-option>
+            </nz-select>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label class="required">
+              Suit Information From
+            </nz-form-label>
+            <nz-select nzPlaceHolder="Select" formControlName="suiteInformationFrom" nzSize="default">
+              <nz-option nzLabel="RMS" nzValue="RMS"></nz-option>
+              <nz-option nzLabel="CRIMS" nzValue="CRIMS"></nz-option>
+            </nz-select>
+          </nz-form-item>
+
+          <nz-form-item>
+          <nz-form-label class="required">Error Log File Path</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="Error Log File Path is required">
+            <input nz-input formControlName="errorLogFilePath" required maxlength="75" [readOnly]="false"/>
+          </nz-form-control>
+        </nz-form-item>
+
+          <div class="row">
+            <div class="col-6">
+
+            </div>
+            <div class="col-6">
+              <nz-form-item>
+                <button
+                  class="w-100 me-2"
+                  type="submit"
+                  nz-button nzType="primary"
+                  (click)="openConfirmation()"
+                  [disabled]="!updateCommonSystemSettingForm.valid || !isFormDirty || isFormSubmitted"
+                  >
+                  Save
+                </button>
+              </nz-form-item>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="col-6 col-md-2"></div>
+  </div>
+</div>

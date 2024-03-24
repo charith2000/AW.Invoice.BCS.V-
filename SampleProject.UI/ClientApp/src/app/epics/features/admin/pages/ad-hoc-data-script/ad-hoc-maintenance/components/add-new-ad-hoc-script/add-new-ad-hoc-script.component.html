@@ -1,0 +1,183 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Add New Ad-Hoc Data Script </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-content>
+      <form nz-form  [nzLayout]="'vertical'" [formGroup]="addAdHocDataForm">
+            <nz-form-label>
+              Data Amending Area
+            </nz-form-label>
+            <nz-form-item>
+              <nz-form-control nzHasFeedback>
+                <input nz-input formControlName="dataAmendingArea"
+                       [readOnly]="true" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label class="required">Description</nz-form-label>
+              <nz-form-control nzHasFeedback nzErrorTip="Message is required">
+            <textarea nz-input formControlName="description" required></textarea>
+              </nz-form-control>
+            </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label class="required">Status</nz-form-label>
+          <nz-form-control nzHasFeedback>
+            <input nz-input formControlName="status" required
+            />
+          </nz-form-control>
+        </nz-form-item>
+            <div class="card ">
+              <div class="card-header">
+                Query
+              </div>
+              <div class="card-body" style="height: 468px">
+                <ngx-codemirror
+                  formControlName="query"
+                  [options]="options"
+                ></ngx-codemirror>
+              </div>
+            </div>
+      </form>
+
+<!--    <div class="col-sm-6">-->
+<!--      <div mat-dialog-content>-->
+<!--&lt;!&ndash;        *ngFor="let form of rulesList"&ndash;&gt;-->
+<!--        <div >-->
+<!--          <div class="card">-->
+<!--            <div class="card-body">-->
+<!--&lt;!&ndash;              [formGroup]="form"&ndash;&gt;-->
+<!--              <form nz-form  [nzLayout]="'vertical'" [formGroup]="form">-->
+<!--                <div class="card mb-4">-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="row">-->
+<!--                      <div class="col-4">-->
+<!--                        <nz-form-label>-->
+<!--                          Script Number-->
+<!--                        </nz-form-label>-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="scriptNumber"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                        <nz-form-label>-->
+<!--                          Data Amending Area-->
+<!--                        </nz-form-label>-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="reportingId"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                      </div>-->
+<!--                      <div class="col-4"></div>-->
+<!--                      <div class="col-4">-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-label>-->
+<!--                            Record Status-->
+<!--                          </nz-form-label>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="status"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                        <nz-form-item>-->
+<!--                          <nz-form-label>-->
+<!--                            Authorization Status-->
+<!--                          </nz-form-label>-->
+<!--                          <nz-form-control nzHasFeedback>-->
+<!--                            <input nz-input formControlName="authStatus"-->
+<!--                                   [readOnly]="true"/>-->
+<!--                          </nz-form-control>-->
+<!--                        </nz-form-item>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <nz-form-item>-->
+<!--                      <nz-form-label>-->
+<!--                        Description-->
+<!--                      </nz-form-label>-->
+<!--                      <nz-form-control nzHasFeedback>-->
+<!--                        <input nz-input formControlName="description"-->
+<!--                               [readOnly]="true"/>-->
+<!--                      </nz-form-control>-->
+<!--                    </nz-form-item>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--                <div class="card">-->
+<!--                  <div class="card-header">-->
+<!--                    Query-->
+<!--                  </div>-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="card-body">-->
+<!--                      <ngx-codemirror-->
+<!--                        [options]="options"-->
+<!--                        [ngModel]="query"-->
+<!--                      ></ngx-codemirror>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+
+
+<!--<div class="d-flex justify-content-end">-->
+<!--  <button-->
+<!--    class="me-2"-->
+<!--    style="width: 200px"-->
+<!--    nz-button nzType="primary"-->
+<!--    (click)="onTestQuery()"-->
+<!--    [disabled]=!addAdHocDataForm.valid-->
+<!--  >-->
+<!--    Verify & Save-->
+<!--  </button>-->
+<!--  <button-->
+<!--    class=" ms-2"-->
+<!--    style="width: 200px"-->
+<!--    nz-button nzType="default" (click)="handleCancel()">-->
+<!--    Cancel-->
+<!--  </button>-->
+<!--</div>-->
+<mat-dialog-actions align="center">
+  <div class="d-flex">
+    <button
+      class="me-1"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      type="submit"
+      nz-button nzType="primary"
+      (click)="onTestQuery()"
+      [disabled]=!addAdHocDataForm.valid
+    >
+      Verify & Save
+    </button>
+    <button
+      class="ms-2"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      nz-button nzType="default" (click)="handleCancel()">
+      Cancel
+    </button>
+  </div>
+</mat-dialog-actions>

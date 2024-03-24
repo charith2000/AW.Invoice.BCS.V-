@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="text-end">
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="isButtonDisabled"
+      (click)="onOpenConfirmation()"
+      class="add-auth-button"
+    >
+      Authorize
+    </button>
+  </div>
+  <nz-table
+    [nzData]="(fieldMapping | async) ?? []"
+    #tableData
+    nzSize="small"
+    nzOuterBordered
+    class="table table-hover"
+    [nzPageSize]="30" [nzScroll]="{ y: '50vh' }"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+  >
+
+    <thead>
+    <tr>
+      <th
+        [nzChecked]="checked"
+        [nzIndeterminate]="indeterminate"
+        (nzCheckedChange)="onAllChecked($event)"
+        nzWidth="10%"
+      >
+      </th>
+      <th class="text-center" nzWidth="20%">Connection ID</th>
+      <th class="text-center" nzWidth="10%">Mapping Type</th>
+      <th class="text-center" nzWidth="10%">Value</th>
+      <th class="text-center" nzWidth="20%">Authorize Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of tableData.data">
+      <td
+        [nzChecked]="setOfCheckedId.has(data.dataSourceTableConnectionFieldMappingId)"
+        (nzCheckedChange)="onItemChecked(data.dataSourceTableConnectionFieldMappingId, $event)"
+      >
+      </td>
+      <td>{{data.dataSourceTableConnectionId}}</td>
+
+      <td>{{data.mappingType == 1 ? 'Default Value' :
+        data.mappingType == 2 ? 'Conditional' :
+          data.mappingType == 3 ? 'DB Value' :
+            data.mappingType == 4 ? 'N/A' :
+              data.mappingType == 5 ? 'Catalogue Value' : ''}}</td>
+
+
+
+      <td *ngIf="data.mappingType == 1">
+        {{data.defaultValue}}
+      </td>
+
+      <td *ngIf="data.mappingType == 3">
+        {{data.fieldMapping}}
+      </td>
+      <td *ngIf="data.mappingType == 4">
+        N/A
+      </td>
+
+      <td *ngIf="data.mappingType == 2">
+        {{this.formatString(data.catalogueType)}}
+      </td>
+
+      <td class="text-center">
+        <div [ngClass]="authorizeStatusChip(data.authorizedStatus)" class="align-items-center text-center p-0 m-0">
+          {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

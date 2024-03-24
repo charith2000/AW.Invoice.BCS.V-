@@ -1,0 +1,204 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2" style="font-family: sans-serif; font-weight: lighter"> View Field Mapping </p>
+    <div class="text-end">
+
+      <button
+        nz-button
+        nzType="text"
+        class="mt-0 mb-0 ms-1 me-1 p-0"
+        nz-tooltip="Previous"
+        (click)="showPreviousRecord()"
+
+      >
+        <i class="lar la-arrow-alt-circle-left" style="font-size: 25px; color: #0050A0"></i>
+      </button>
+      <label
+        nz-tooltip="Current row index"
+        class="text-center me-1" style=" width: 30px">
+        {{currentIndex + 1}}
+      </label>
+
+      <button
+        nz-button
+        nzType="text"
+        class="mt-0 mb-0 ms-0 me-1 p-0"
+        nz-tooltip="Next"
+        (click)="showNextRecord()"
+
+      >
+        <i class="lar la-arrow-alt-circle-right" style="font-size: 25px; color: #197C00"></i>
+      </button>
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times" style="color: red"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-content class="mb-0 pb-0">
+  <hr>
+  <form *ngIf="currentRecord" nz-form [nzLayout]="'vertical'" [formGroup]="viewFieldMappingForm">
+    <div>
+      <nz-form-item>
+        <nz-form-label class="required">
+          Segment
+        </nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input nz-input formControlName="segment" required [readOnly]="true" style="color: #1F1C18"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label class="required">
+          Field
+        </nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input nz-input formControlName="field" required [readOnly]="true" style="color: #1F1C18;"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label class="required">
+          Field Option
+        </nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input nz-input formControlName="options" required [readOnly]="true" style="color: #1F1C18; "/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzFor="MappingType" class="required">
+          Mapping Type
+        </nz-form-label>
+        <nz-form-control nzErrorTip="Please select the mapping type!">
+          <nz-select formControlName="mappingType" required>
+            <nz-option nzValue="1" nzLabel="Default Value"></nz-option>
+            <nz-option nzValue="3" nzLabel="DB Value"></nz-option>
+            <nz-option nzValue="4" nzLabel="N/A" [nzDisabled]="isNADisabled" ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </form>
+</div>
+
+
+<div *ngIf="showDefaultValueDiv" class="mt-0 pt-0">
+  <div mat-dialog-content class="mt-0 pt-0">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="viewDefaultValueForm" class="mt-0">
+      <nz-form-item>
+        <nz-form-label nzFor="MappingType" class="required">
+          Default Value
+        </nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="default value is required">
+          <input nz-input formControlName="defaultValue" required/>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="showDBValueDiv" class="mt-0 pt-0">
+  <div mat-dialog-content>
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="viewDbValueForm">
+      <nz-form-item>
+        <nz-form-label class="required">Field Mapping</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="Field mapping is required">
+          <div class="card">
+            <div class="card-body" style="height: 350px">
+              <ngx-codemirror
+                formControlName="fieldMapping"
+                [options]="options"
+              ></ngx-codemirror>
+            </div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
+
+<mat-dialog-actions align="center">
+  <div *ngIf="showDBValueDiv" class="mt-0 pt-0">
+  <div class="d-flex " style="margin-top: 55px">
+    <button
+      class="me-1"
+      style="
+                    width: 220px;
+                    border-radius: 5px;
+                    "
+      type="submit"
+      nz-button nzType="primary"
+      [disabled]="!viewDbValueForm.dirty || !viewDbValueForm.valid"
+      (click)="openConfirmation()"
+    >
+      Update
+    </button>
+    <button
+      class="ms-2"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      nz-button nzType="default" (click)="handleCancel()">
+      Cancel
+    </button>
+  </div>
+  </div>
+  <div *ngIf="showDefaultValueDiv" class="mt-0 pt-0">
+    <div class="d-flex " style="margin-top: 195px">
+      <button
+        class="me-1"
+        style="
+                    width: 220px;
+                    border-radius: 5px;
+                    "
+        type="submit"
+        nz-button nzType="primary"
+        [disabled]="!viewDefaultValueForm.valid || !viewDefaultValueForm.dirty"
+        (click)="openConfirmation()"
+      >
+        Update
+      </button>
+      <button
+        class="ms-2"
+        style="
+      width: 220px;
+      border-radius: 5px;
+      "
+        nz-button nzType="default" (click)="handleCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+  <div *ngIf="showNADiv" class="mt-0 pt-0 " >
+    <div class="d-flex " style="margin-top: 300px">
+      <button
+        class="me-1"
+        style="
+                    width: 220px;
+                    border-radius: 5px;
+                    "
+        type="submit"
+        nz-button nzType="primary"
+        [disabled]="!viewFieldMappingForm.valid || !viewFieldMappingForm.dirty"
+        (click)="openConfirmation()"
+      >
+        Update
+      </button>
+      <button
+        class="ms-2"
+        style="
+      width: 220px;
+      border-radius: 5px;
+      "
+        nz-button nzType="default" (click)="handleCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>
+

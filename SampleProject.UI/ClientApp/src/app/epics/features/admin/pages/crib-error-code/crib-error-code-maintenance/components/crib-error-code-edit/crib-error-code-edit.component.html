@@ -1,0 +1,99 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Update Error Code </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-content>
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="updateErrorCodeForm">
+
+    <div class="row">
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">Error Code Prefix</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="Prefix is required">
+            <input nz-input  formControlName="prefix" required maxlength="3" [readOnly]="true"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">Error Code Suffix</nz-form-label>
+          <nz-form-control nzHasFeedback nzErrorTip="Suffix is required">
+            <input nz-input  formControlName="suffix" required maxlength="4" [readOnly]="true"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Error Code
+      </nz-form-label>
+
+      <nz-form-control nzHasFeedback>
+        <input nz-input  formControlName="id" required [readOnly]="true"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">Message</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Message is required">
+            <textarea nz-input nzSize="large" formControlName="message" required
+                      maxlength="1000"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Gravity Error Code
+      </nz-form-label>
+      <nz-select nzPlaceHolder="Select" formControlName="gravityCode" nzSize="default">
+        <nz-option nzLabel="B" nzValue="B"></nz-option>
+        <nz-option nzLabel="C" nzValue="C"></nz-option>
+        <nz-option nzLabel="W" nzValue="W"></nz-option>
+        <nz-option nzLabel="NA" nzValue="NA"></nz-option>
+        <nz-option nzLabel="File" nzValue="File"></nz-option>
+      </nz-select>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label  nzFor="status" class="required">Status</nz-form-label>
+      <nz-form-control  nzErrorTip="Please select the status!">
+        <nz-select
+          id="status"
+          formControlName="status"
+          required
+        >
+          <nz-option nzValue="1" nzLabel="Active"></nz-option>
+          <nz-option nzValue="2" nzLabel="Inactive"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="d-flex">
+      <button
+        class="w-100 me-2"
+        type="submit"
+        nz-button nzType="primary"
+        (click)="openConfirmation()"
+        [disabled]="!updateErrorCodeForm.valid || !updateErrorCodeForm.dirty">
+        Update
+      </button>
+      <button
+        class="w-100 ms-2"
+        nz-button nzType="default" (click)="handleCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+

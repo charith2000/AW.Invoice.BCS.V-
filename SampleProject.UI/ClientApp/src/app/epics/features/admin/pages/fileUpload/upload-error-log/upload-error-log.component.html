@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-6">
+      Reporting Period :
+      <nz-space style="margin-right: 10px;"> From</nz-space>
+      <nz-space class="text-secondary  fw-semibold" style="margin-right: 10px;">
+        <strong> {{reportingDate | date}} </strong></nz-space>
+      <nz-space style="margin-right: 10px;"> to</nz-space>
+      <nz-space class="text-secondary  fw-semibold"><strong>{{nextReportingDate | date}} </strong></nz-space>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <nz-upload
+      nzType="drag"
+      nzAction="{{apiPath}}"
+      [nzMultiple]="true"
+      (nzChange)="handleChange($event)"
+      [nzShowUploadList]="false"
+    >
+      <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        Support for a single or bulk upload.
+      </p>
+    </nz-upload>
+
+
+  </div>
+  <div class="row">
+    <nz-table
+      [nzData]="uploadedExceptionFiles"
+      #tableData
+      nzSize="small"
+      nzOuterBordered
+      class="table table-hover"
+
+    >
+      <thead>
+      <tr>
+        <th class="text-center" nzWidth="50%">Uploaded File Name</th>
+        <th class="text-center" nzWidth="10%">No. Records</th>
+        <th class="text-center" nzWidth="10%">Date / Time</th>
+        <th class="text-center" nzWidth="15%">Submission Status</th>
+        <th class="text-center" nzWidth="5%">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of tableData.data">
+        <td class="text-start">{{data.fileName}}</td>
+        <td class="text-center">{{data.numberOfRecords}}</td>
+        <td class="text-center">{{data.createdDate |date:'short'}}</td>
+        <td class="text-center">
+          <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+            {{ data.status == 1 ? 'Completed' : 'Pending' }}
+          </div>
+        </td>
+        <td class="text-center">
+          <button
+            nz-button
+            nzType="text"
+            (click)="viewRecord(data)"
+          >
+            <i class="las la-edit" style="color: #197C00"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+
+
+</div>

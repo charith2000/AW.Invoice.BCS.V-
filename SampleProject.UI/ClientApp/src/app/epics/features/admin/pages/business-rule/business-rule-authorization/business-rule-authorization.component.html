@@ -1,0 +1,79 @@
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="text-end">
+        <button
+          nz-button
+          nzType="primary"
+          [disabled]="isButtonDisabled"
+          (click)="onOpenConfirmation()"
+          class="add-auth-button"
+        >
+          Authorize
+        </button>
+      </div>
+      <div class="col-sm-12 mt-2">
+        <nz-table
+          [nzData]="(businessRules | async) ?? []"
+          #tableData
+          nzSize="small"
+          nzOuterBordered
+          class="table table-hover"
+          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+          <thead>
+          <tr>
+            <th
+              [nzChecked]="checked"
+              [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="onAllChecked($event)"
+            >
+            </th>
+            <th class="text-center" nzWidth="12%">Reporting Type</th>
+            <th class="text-center" nzWidth="8%">Segment</th>
+            <th class="text-center" nzWidth="40%">Description</th>
+            <th class="text-center" nzWidth="12%">Execution Point</th>
+            <th class="text-center" nzWidth="8%">Seq. No</th>
+            <th nzRight class="text-center" nzWidth="8%">Status</th>
+            <th nzRight class="text-center" nzWidth="12%">Authorize Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of tableData.data">
+            <td
+              [nzChecked]="setOfCheckedId.has(data.businessRuleId)"
+              (nzCheckedChange)="onItemChecked(data.businessRuleId, $event)"
+            >
+            </td>
+            <td class="text-center">{{ data.reportingId == 'CN' ? 'CN'
+                                      : data.reportingId == 'CM' ? 'CM'
+                                      : data.reportingId == 'CNDC' ? 'CNDC'
+                                      : 'CMDC'}}</td>
+            <td class="text-center">{{ data.segmentName == 'Subject' ? 'CS'
+                                      : data.segmentName == 'Dishonour of Cheques' ? 'DC'
+                                      : data.segmentName == 'Guarantor' ? 'GS'
+                                      : data.segmentName == 'Relationship' ? 'RS'
+                                      : data.segmentName == 'Suit Filed' ? 'SF'
+                                      : data.segmentName == 'Security' ? 'SS'
+                                      : data.segmentName == 'Credit Facility' ? 'CF'
+                                      : 'Employment'}}</td>
+            <td class="text-start">{{ data.description }}</td>
+            <td
+              class="text-center">{{data.ruleExecutionPoint == 1 ? 'ASD' : data.ruleExecutionPoint == 2 ? 'BMV' : 'AMV'}}</td>
+            <td class="text-start">{{ data.sequence }}</td>
+            <td class="text-center">
+              <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                {{ data.status == 1 ? 'Active' : 'Inactive' }}
+              </div>
+            </td>
+            <td class="text-center">
+              <div [ngClass]="authorizeStatusChip(data.authorizedStatus)" class="align-items-center text-center p-0 m-0">
+                {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+              </div>
+            </td></tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>

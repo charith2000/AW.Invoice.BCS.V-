@@ -1,0 +1,67 @@
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="text-end">
+        <button
+          nz-button
+          nzType="primary"
+          [disabled]="isButtonDisabled"
+          (click)="onOpenConfirmation()"
+          class="add-auth-button">
+          Authorize
+        </button>
+      </div>
+      <div class="col-sm-12 mt-2">
+        <nz-table
+          [nzData]="(adHocs | async) ?? []"
+          #tableData
+          nzSize="small"
+          nzOuterBordered
+          class="table table-hover"
+          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+          <thead>
+          <tr>
+            <th
+              [nzChecked]="checked"
+              [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="onAllChecked($event)"
+            >
+            </th>
+            <th class="text-center" nzWidth="12%">Reporting Type</th>
+            <th class="text-center" nzWidth="58%">Description</th>
+            <th class="text-center" nzWidth="10%">Record Type</th>
+            <th nzRight class="text-center" nzWidth="8%">Status</th>
+            <th nzRight class="text-center" nzWidth="12%">Authorize Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of tableData.data">
+            <td
+              [nzChecked]="setOfCheckedId.has(data.id)"
+              (nzCheckedChange)="onItemChecked(data.id, $event)"
+            >
+            </td>
+            <td class="text-center">{{ data.dataAmendingArea == 'CN' ? 'CN'
+              : data.dataAmendingArea == 'CM' ? 'CM'
+                : data.dataAmendingArea == 'CNDC' ? 'CNDC'
+                  : 'CMDC'}}</td>
+            <td class="text-start">{{ data.description }}</td>
+            <td class="text-center">{{ data.recordingType }}</td>
+            <td class="text-center">
+              <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                {{ data.status == 1 ? 'Active' : 'Inactive' }}
+              </div>
+            </td>
+            <td class="text-center">
+              <div [ngClass]="authorizeStatusChip(data.authorizedStatus)"
+                   class="align-items-center text-center p-0 m-0">
+                {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+              </div>
+            </td></tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>

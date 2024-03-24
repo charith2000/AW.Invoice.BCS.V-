@@ -1,0 +1,30 @@
+<div class="container">
+  <nz-steps
+    nzType="navigation"
+    nzSize="small"
+    [nzCurrent]="index"
+    (nzIndexChange)="onIndexChange($event)">
+    <nz-step
+      nzTitle="Test Connection"
+      nzDescription="First Step"
+    >
+    </nz-step>
+
+    <nz-step
+      nzTitle="Field Mapping"
+      nzDescription="Second Step"
+    ></nz-step>
+
+    <nz-step
+      nzTitle="Final Query"
+      nzDescription="Third Step"
+    ></nz-step>
+
+  </nz-steps>
+</div>
+
+<app-test-connection [testConnection]="connectionData" [code]="code" *ngIf="index == 0"></app-test-connection>
+
+<app-field-mapping [testConnection]="connectionData" [code]="code" *ngIf="index == 1"></app-field-mapping>
+
+<app-final-query [code]="code" *ngIf="index==2"></app-final-query>

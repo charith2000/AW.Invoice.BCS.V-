@@ -1,0 +1,72 @@
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="text-end me-1">
+        <button
+          nz-button nzType="primary"
+          [disabled]="isButtonDisabled"
+          (click)="onOpenConfirmation()"
+          class="add-auth-button"
+        >
+          Authorize
+        </button>
+      </div>
+      <div class="col-sm-12 mt-2 me-0 pe-0">
+        <nz-table
+          [nzData]="(errorCodes | async) ?? []"
+          #tableData
+          nzSize="small"
+          nzOuterBordered
+          class="table table-hover"
+          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+          <thead>
+          <tr>
+            <th
+              [nzChecked]="checked"
+              [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="onAllChecked($event)"
+              nzWidth="5%"
+            >
+            </th>
+            <th class="text-center" nzWidth="10%">Error Code</th>
+            <th class="text-center" nzWidth="45%">Message</th>
+            <th class="text-center" nzWidth="10%">Gravity Code</th>
+            <th class="text-center" nzWidth="10%">Status</th>
+            <th class="text-center" nzWidth="15%">Authorize Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of tableData.data">
+            <td
+              [nzChecked]="setOfCheckedId.has(data.code)"
+              (nzCheckedChange)="onItemChecked(data.code, $event)"
+            >
+            </td>
+            <td class="text-center">{{ data.code }}</td>
+            <td class="text-start">{{ data.message }}</td>
+            <td class="text-center">{{ data.gravityCode }}</td>
+            <td class="text-center">
+              <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                {{ data.status == 1 ? 'Active' : 'Inactive' }}
+              </div>
+            </td>
+            <td class="text-center">
+              <div [ngClass]="authorizeStatusChip(data.authorizedStatus)"
+                   class="align-items-center text-center p-0 m-0">
+                {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+              </div>
+            </td>
+
+
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

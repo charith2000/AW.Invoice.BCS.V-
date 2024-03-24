@@ -1,0 +1,74 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2" style="font-family: sans-serif; font-weight: lighter"> Reporting Session </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-content>
+  <hr>
+
+  <div class="row">
+    <p>Next Reporting Date : {{data.toDate | date}} </p>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <nz-form-item>
+        <nz-form-label class="required" >Reporting Date</nz-form-label>
+        <nz-form-control>
+          <nz-date-picker
+            [(ngModel)]="nextFromDate"
+            (ngModelChange)="updateNextReportingDate()"
+            [nzDisabledDate]="disabledDate"
+            nzPlaceHolder="Reporting Date"
+            style="width:100%"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="col-sm-6">
+      <nz-form-item>
+        <nz-form-label class="required">Next Reporting Date</nz-form-label>
+        <nz-form-control [nzSpan]="60">
+          <nz-date-picker [(ngModel)]="nextToDate"
+                          style="width:100%"
+                          nzPlaceHolder="Generated Date"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</div>
+<mat-dialog-actions align="center">
+
+  <div class="d-flex">
+<!--    [disabled]="!reportingDate"-->
+    <button
+      class="me-2"
+      style="
+      width: 165px;
+      border-radius: 5px;
+      "
+      type="submit"
+      nz-button nzType="primary"
+      (click)="closeReportingCycle()"
+
+    >
+      Confirm
+    </button>
+    <button
+      class="ms-2"
+      style="
+      width: 165px;
+      border-radius: 5px;
+      "
+      nz-button nzType="default" (click)="onOpenCancelConfirmation()">
+      Exit
+    </button>
+  </div>
+</mat-dialog-actions>

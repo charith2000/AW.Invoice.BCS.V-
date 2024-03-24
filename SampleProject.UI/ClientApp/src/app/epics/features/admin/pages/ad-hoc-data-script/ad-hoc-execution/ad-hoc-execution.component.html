@@ -1,0 +1,184 @@
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <p class="heading-text">-->
+<!--      Select a data amending area-->
+<!--    <div>-->
+<!--      <nz-select [(ngModel)]="selectedDataAmendingAreaType"-->
+<!--                 (change)="onSelectReportingType($event)"-->
+<!--                 (ngModelChange)="onSelectReportingType($event)"-->
+<!--                 class="center-panel-searchBar"-->
+<!--      >-->
+<!--        <nz-option nzLabel="All" nzValue="All"></nz-option>-->
+<!--        <nz-option nzLabel="Admin" nzValue="Admin"></nz-option>-->
+<!--        <nz-option nzLabel="Common" nzValue="Common"></nz-option>-->
+<!--        <nz-option nzLabel="Consumer" nzValue="CN"></nz-option>-->
+<!--        <nz-option nzLabel="Commercial" nzValue="CM"></nz-option>-->
+<!--        <nz-option nzLabel="Consumer DC" nzValue="CNDC"></nz-option>-->
+<!--        <nz-option nzLabel="Commercial DC" nzValue="CMDC"></nz-option>-->
+<!--      </nz-select>-->
+<!--    </div>-->
+<!--    <div *ngIf="selectedDataAmendingAreaType != null ">-->
+<!--      <div class="row">-->
+<!--        <div class="col-10 me-0 pe-0">-->
+<!--          <div class="text-start">-->
+<!--            <div class="input-group" style="width: 432px">-->
+<!--                <span class="input-group-text border-0" id="search-addon">-->
+<!--                 <i class="las la-search"></i>-->
+<!--                </span>-->
+<!--              <input nz-input type="search" class="form-control" placeholder="Search" aria-label="Search"-->
+<!--                     aria-describedby="search-addon" [(ngModel)]="filterValue"-->
+<!--                     (ngModelChange)="applyFilter()" style="height: 30px"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-2 me-0 pe-o">-->
+<!--          <div class="text-end">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-12  mt-2">-->
+<!--          <nz-table-->
+<!--            [nzData]="(filteredRecodes | async )?? []"-->
+<!--            #tableData-->
+<!--            nzSize="small"-->
+<!--            nzOuterBordered-->
+<!--            class="table-height">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th class="text-center" nzWidth="5%">No</th>-->
+<!--              <th class="text-center" nzWidth="8%">Reporting Type</th>-->
+<!--              <th class="text-center" nzWidth="33%">Description</th>-->
+<!--              <th nzRight class="text-center" nzWidth="8%">Status</th>-->
+<!--              <th nzRight class="text-center" nzWidth="12%">Authorize Status</th>-->
+<!--              <th nzRight class="text-center" nzWidth="7%">Action</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let data of tableData.data;let i = index;">-->
+<!--              <td class="text-center">{{i + 1}}</td>-->
+<!--              <td class="text-center">{{ data.dataAmendingArea == 'CN' ? 'CN'-->
+<!--                : data.dataAmendingArea == 'CM' ? 'CM'-->
+<!--                  : data.dataAmendingArea == 'CNDC' ? 'CNDC'-->
+<!--                    : data.dataAmendingArea == 'Admin' ? 'Admin'-->
+<!--                      : data.dataAmendingArea == 'CMDC' ? 'CMDC'-->
+<!--                        : data.dataAmendingArea == 'Common' ? 'Common' : '' }}</td>-->
+<!--              <td class="text-start">{{ data.description }}</td>-->
+<!--              <td class="text-center">-->
+<!--                <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">-->
+<!--                  {{ data.status == 1 ? 'Active' : 'Inactive' }}-->
+<!--                </div>-->
+<!--              </td>-->
+<!--              <td class="text-center">-->
+<!--                <div [ngClass]="authorizeStatusChip(data.authorizedStatus)"-->
+<!--                     class="align-items-center text-center p-0 m-0">-->
+<!--                  {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}-->
+<!--                </div>-->
+<!--              </td>-->
+<!--              <td nzRight class="text-center">-->
+<!--                <button-->
+<!--                  nz-button-->
+<!--                  nzType="text"-->
+<!--                  (click)="openEditAdHocDialog(data)">-->
+<!--                  <i class="las la-edit" style="color: #0050A0"></i>-->
+<!--                </button>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </nz-table>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="container">
+  <div class="row">
+    <p class="heading-text">
+      Select a data amending area
+    <div>
+      <nz-select [(ngModel)]="selectedDataAmendingAreaType"
+                 (change)="onSelectReportingType($event)"
+                 (ngModelChange)="onSelectReportingType($event)"
+                 class="center-panel-searchBar"
+      >
+        <nz-option nzLabel="All" nzValue="All"></nz-option>
+        <nz-option nzLabel="Admin" nzValue="Admin"></nz-option>
+        <nz-option nzLabel="Common" nzValue="Common"></nz-option>
+        <nz-option nzLabel="Consumer" nzValue="CN"></nz-option>
+        <nz-option nzLabel="Commercial" nzValue="CM"></nz-option>
+        <nz-option nzLabel="Consumer DC" nzValue="CNDC"></nz-option>
+        <nz-option nzLabel="Commercial DC" nzValue="CMDC"></nz-option>
+      </nz-select>
+    </div>
+    <div *ngIf="selectedDataAmendingAreaType != null ">
+      <div class="row">
+        <div class="col-10 me-0 pe-0">
+          <div class="text-start">
+            <div class="input-group" style="width: 432px">
+                <span class="input-group-text border-0" id="search-addon">
+                 <i class="las la-search"></i>
+                </span>
+              <input nz-input type="search" class="form-control" placeholder="Search" aria-label="Search"
+                     aria-describedby="search-addon" [(ngModel)]="filterValue"
+                     (ngModelChange)="applyFilter()" style="height: 30px"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-12  mt-2">
+          <nz-table
+            [nzData]="(filteredRecodes | async )?? []"
+            #tableData
+            nzSize="small"
+            nzOuterBordered
+            class="table-height">
+            <thead>
+            <tr>
+              <th class="text-center" nzWidth="5%">No</th>
+              <th class="text-center" nzWidth="8%">Reporting Type</th>
+              <th class="text-center" nzWidth="33%">Description</th>
+              <th nzRight class="text-center" nzWidth="8%">Status</th>
+              <th nzRight class="text-center" nzWidth="12%">Authorize Status</th>
+              <th nzRight class="text-center" nzWidth="7%">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of tableData.data;let i = index;">
+              <td class="text-center">{{i + 1}}</td>
+              <td class="text-center">{{ data.dataAmendingArea == 'CN' ? 'CN'
+                : data.dataAmendingArea == 'CM' ? 'CM'
+                  : data.dataAmendingArea == 'CNDC' ? 'CNDC'
+                    : data.dataAmendingArea == 'Admin' ? 'Admin'
+                      : data.dataAmendingArea == 'CMDC' ? 'CMDC'
+                        : data.dataAmendingArea == 'Common' ? 'Common' : '' }}</td>
+              <td class="text-start">{{ data.description }}</td>
+              <td class="text-center">
+                <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                  {{ data.status == 1 ? 'Active' : 'Inactive' }}
+                </div>
+              </td>
+              <td class="text-center">
+                <div [ngClass]="authorizeStatusChip(data.authorizedStatus)"
+                     class="align-items-center text-center p-0 m-0">
+                  {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+                </div>
+              </td>
+              <td nzRight class="text-center">
+                <button
+                  nz-button
+                  nzType="text"
+                  (click)="openEditAdHocDialog(data)">
+                  <i class="las la-edit" style="color: #0050A0"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,104 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Update Data Source </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-content>
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="updateDataSourceForm">
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Source Name
+      </nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="sourceName" required maxlength="20" [readOnly]="true" />
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Server Name
+      </nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="serverName" required/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        User Id
+      </nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="userId" required/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Password
+      </nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input type="password" formControlName="password" required/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">
+        Database
+      </nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="dbName" required/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="Status" class="required">Status</nz-form-label>
+      <nz-form-control nzErrorTip="Please select the status!">
+        <nz-select
+          id="Status"
+          formControlName="status"
+        >
+          <nz-option nzValue="1" nzLabel="Active"></nz-option>
+          <nz-option nzValue="2" nzLabel="Inactive"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="d-flex">
+    <button
+      class="me-1"
+      type="submit"
+      nz-button nzType="primary"
+      (click)="onTestDataSource()"
+      [disabled]="!updateDataSourceForm.valid"
+      style="width: 235px"
+    >
+      Test Connection And Update
+    </button>
+    <button
+      class=" me-1"
+      nz-button nzType="default" (click)="handleCancel()"
+      style="width: 235px"
+    >
+      Cancel
+    </button>
+  </div>
+</mat-dialog-actions>
+
+
+

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header" >
+      <div class="d-flex justify-content-between">
+        <h6 class="mt-1">
+          {{code}} Final Query
+        </h6>
+          <button
+            nz-button
+            nzType="primary"
+            class="add-auth-button"
+            (click)="onTestQuery()"
+          >
+            Test & Save Query
+          </button>
+      </div>
+    </div>
+    <div class="card-body" style="height: 600px">
+      <ngx-codemirror
+        [(ngModel)]="finalQuery"
+        [options]="options"
+        style=""
+      ></ngx-codemirror>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Update Segment Field </p>
+    <div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-content>
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="updateSegmentFieldForm">
+    <nz-form-item>
+      <nz-form-label class="required">
+        Field Name
+      </nz-form-label>
+
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="name" required [readOnly]="true" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">Field Option</nz-form-label>
+      <nz-form-control nzHasFeedback >
+        <input nz-input formControlName="options" required  [readOnly]="true"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="row">
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">Field Type</nz-form-label>
+          <nz-form-control nzHasFeedback >
+            <input nz-input formControlName="type"  [readOnly]="true" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="required">Length</nz-form-label>
+          <nz-form-control nzHasFeedback >
+            <input nz-input formControlName="length" required  [readOnly]="true"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+
+
+    <nz-form-item>
+      <nz-form-label class="required">Description</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Description is required">
+            <textarea nz-input formControlName="description" required></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item >
+      <nz-form-label nzFor="MappingType" >
+        Catalogue Type
+      </nz-form-label>
+      <nz-form-control >
+        <nz-select
+          formControlName="catalogueType"
+          nzSize="default"
+          nzPlaceHolder="Select Catalogue Type"
+          nzAllowClear nzShowSearch [nzDropdownRender]="renderTemplate"
+        >
+          <nz-option *ngFor="let o of catalogueTypes | async " [nzValue]="o.key"
+                     [nzLabel]="o.value"></nz-option>
+        </nz-select>
+        <ng-template #renderTemplate>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<mat-dialog-actions align="center">
+  <div class="d-flex">
+    <button
+      class="me-1"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      type="submit"
+      nz-button nzType="primary"
+      (click)="openConfirmation()"
+    >
+      Update
+    </button>
+    <button
+      class="ms-2"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      nz-button nzType="default" (click)="handleCancel()">
+      Cancel
+    </button>
+  </div>
+</mat-dialog-actions>
+
+
+
+

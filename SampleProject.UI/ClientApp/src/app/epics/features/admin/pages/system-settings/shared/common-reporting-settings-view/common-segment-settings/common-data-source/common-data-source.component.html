@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-md-12">
+      <div class="text-end">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="onOpenAddDataSourceDialog()"
+          class="add-auth-button"
+        >
+          <i class="las la-plus-circle me-2"></i> Add New
+        </button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-6 col-md-12">
+      <div class="text-center">
+        <nz-table
+          [nzData]="(dataSource | async )?? []"
+          #tableData
+          nzSize="small"
+          nzOuterBordered
+          class="pagination-lg"
+          [nzPageSize]="10" [nzScroll]="{ y: '500px' }"
+        >
+          <thead>
+          <tr>
+            <th class="text-center" nzWidth="13%">Source Name</th>
+            <th class="text-center" nzWidth="15%">Connection Name</th>
+            <th class="text-center" nzWidth="15%">Table Name</th>
+            <th class="text-center" nzWidth="10%">Status</th>
+            <th class="text-center" nzWidth="20%">Authorize Status</th>
+            <th class="text-center" nzWidth="10%">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of tableData.data">
+            <td class="text-start">{{ data.sourceName}}</td>
+            <td class="text-start">{{data.dataSourceConnectionId}}</td>
+            <td class="text-start">{{data.tableName}}</td>
+            <td class="text-center">
+              <div [ngClass]="statusChip(data.status)" class="align-items-center text-center p-0 m-0 ">
+                {{ data.status == 1 ? 'Active' : 'Inactive' }}
+              </div>
+            </td>
+            <td class="text-center">
+              <div [ngClass]="authorizeStatusChip(data.authorizedStatus)" class="align-items-center text-center p-0 m-0">
+                {{ data.authorizedStatus == 1 ? 'Authorized' : data.authorizedStatus == 2 ? 'Pending' : 'Rejected' }}
+              </div>
+            </td>
+            <td nzRight class="text-center">
+              <button nz-button nzType="text" style="background-color: transparent"
+                      (click)="onOpenUpdateDataSourceDialog(data)">
+                <i class="las la-edit" style="color: #0050A0"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>
