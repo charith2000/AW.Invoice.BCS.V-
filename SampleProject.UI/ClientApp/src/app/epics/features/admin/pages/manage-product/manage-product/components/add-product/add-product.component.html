@@ -1,0 +1,127 @@
+<div mat-dialog-title>
+  <div class="m-0 d-flex justify-content-between align-items-center dialog-title">
+    <p class="mb-0 mt-1 ps-2"> Add New Product </p>
+    <!--<div class="text-end">
+      <button
+        mat-icon-button
+        (click)="handleCancel()"
+      >
+        <i class="las la-times"></i>
+      </button>
+    </div>-->
+  </div>
+</div>
+<div mat-dialog-content class="mb-0 pb-0">
+
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="addProductForm">
+    <nz-form-item>
+      <nz-form-label class="required">Product Barcode</nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input id="productBarcode" nz-input formControlName="productBarcode"  placeholder="scan to update" required [disabled]="true" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required">Product Name</nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="productName" placeholder="" required/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="Status" class="required">Product Type</nz-form-label>
+      <nz-form-control nzErrorTip="Please select the product type!">
+        <nz-select
+          id="productType"
+          formControlName="productType"
+        >
+          <nz-option nzValue="1" nzLabel="Raw Matierial"></nz-option>
+          <nz-option nzValue="2" nzLabel="Towel"></nz-option>
+          <nz-option nzValue="3" nzLabel="Bed Sheet"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="Status" class="required">Product Size</nz-form-label>
+      <nz-form-control nzErrorTip="Please select the product size!">
+        <nz-select
+          id="productSize"
+          formControlName="productSize"
+        >
+          <nz-option nzValue="1" nzLabel="Size 1"></nz-option>
+          <nz-option nzValue="2" nzLabel="Size 2"></nz-option>
+          <nz-option nzValue="3" nzLabel="Size 3"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-label nzFor="Status" class="required">Product Color</nz-form-label>
+      <nz-form-control nzErrorTip="Please select the product color!">
+        <nz-select
+          id="productColor"
+          formControlName="productColor"
+        >
+          <nz-option nzValue="1" nzLabel="Color 1"></nz-option>
+          <nz-option nzValue="2" nzLabel="Color 2"></nz-option>
+          <nz-option nzValue="3" nzLabel="Color 3"></nz-option>
+          <nz-option nzValue="4" nzLabel="Color 4"></nz-option>
+          <nz-option nzValue="5" nzLabel="Color 5"></nz-option>
+          <nz-option nzValue="6" nzLabel="Color 6"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="required"  nzTooltipTitle="Maximum length 50 characters" >Description</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Description is required">
+            <textarea nz-input formControlName="productDescription" required
+                      maxlength="50"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="required">Product Unit Prize</nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="productUnitPrice" placeholder="" required/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="required">Product Status</nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input formControlName="productStatus" placeholder="Active" required [readOnly]="true"/>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<mat-dialog-actions align="center">
+  <div class="d-flex">
+    <button
+      class="me-1"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      type="submit"
+      nz-button nzType="primary"
+      (click)="openConfirmation()"
+      [disabled]="!addProductForm.valid"
+    >
+      Add
+    </button>
+    <button
+      class="ms-2"
+      style="
+      width: 220px;
+      border-radius: 5px;
+      "
+      nz-button nzType="default" (click)="handleCancel()">
+      Cancel
+    </button>
+  </div>
+</mat-dialog-actions>
+
+
+
+

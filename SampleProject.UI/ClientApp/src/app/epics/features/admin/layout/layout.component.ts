@@ -16,7 +16,7 @@ export class LayoutComponent extends BaseComponent implements OnInit, OnDestroy 
 
   breadcrumbs: MenuItem[] = [];
   reportingDate: Date | null = null;
-
+  today= new Date();
   openMap: { [name: string]: boolean } = {
     sub1: false,
     sub2: false,
@@ -69,9 +69,6 @@ export class LayoutComponent extends BaseComponent implements OnInit, OnDestroy 
       this.router.events.subscribe(() => {
         this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
       }));
-    this.apiBaseService.get<ReportingSessionModel>([ReportingSessionApi.base])
-      .subscribe((res) => {
-        this.reportingDate = res?.toDate ?? null
-      })
+
   }
 }

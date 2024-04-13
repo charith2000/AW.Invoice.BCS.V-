@@ -1,30 +1,29 @@
 import {Component, HostListener, Inject, OnInit, ViewContainerRef} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {NzButtonSize} from 'ng-zorro-antd/button';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {CribCatalogueRecord} from "@application/crib-catalogue-record/crib-catalogue-record";
-import {CribCatalogueApi} from "@application/crib-catalogue-record/crib-catalogue.api";
 import {HttpClient} from "@angular/common/http";
 import {ApiBaseService} from "@core/services/api-base.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CribCatalogueRecord} from "@application/crib-catalogue-record/crib-catalogue-record";
+import {CribCatalogueApi} from "@application/crib-catalogue-record/crib-catalogue.api";
+import {NzButtonSize} from "ng-zorro-antd/button";
 
 @Component({
-  selector: 'app-add-catalog-popover',
-  templateUrl: './add-catalog-popover.component.html',
-  styleUrls: ['./add-catalog-popover.component.css']
+  selector: 'app-add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.css']
 })
-export class AddCatalogPopoverComponent implements OnInit {
+export class AddProductComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA)
     public data: { selectedCatalogue: string },
-    public dialogRef: MatDialogRef<AddCatalogPopoverComponent>,
+    public dialogRef: MatDialogRef<AddProductComponent>,
     private modal: NzModalService,
     private viewContainerRef: ViewContainerRef,
     private http: HttpClient,
     private apiBaseService: ApiBaseService,
   ) {
-
   }
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -62,7 +61,7 @@ export class AddCatalogPopoverComponent implements OnInit {
   }
 
   addProductForm = new FormGroup({
-    productBarcode:  new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    productBarcode:  new FormControl({value: '', disabled: true}, [Validators.required, Validators.maxLength(50)]),
     productName:  new FormControl('', [Validators.required, Validators.maxLength(50)]),
     productType:  new FormControl('', [Validators.required, Validators.maxLength(50)]),
     productColor: new FormControl('', [Validators.required, Validators.maxLength(15)]),
@@ -82,10 +81,10 @@ export class AddCatalogPopoverComponent implements OnInit {
 
   saveProduct(): void {
     let cribCatalogueRecord = {
-     /* catalogueType: this.data.selectedCatalogue,
-      cribId: this.addCatalogForm.get('cribId')!.value !,
-      bankId: this.addCatalogForm.get('bankId')!.value !,
-      description: this.addCatalogForm.get('description')!.value !,*/
+      /* catalogueType: this.data.selectedCatalogue,
+       cribId: this.addCatalogForm.get('cribId')!.value !,
+       bankId: this.addCatalogForm.get('bankId')!.value !,
+       description: this.addCatalogForm.get('description')!.value !,*/
     } as CribCatalogueRecord
     this.apiBaseService.post<CribCatalogueRecord>([CribCatalogueApi.CribCatalogueRecord], cribCatalogueRecord, true, true, 'Successfully Added!').subscribe();
     this.onCloseModel();

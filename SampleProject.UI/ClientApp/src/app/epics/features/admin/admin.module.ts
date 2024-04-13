@@ -121,236 +121,64 @@ import { DataSourceTableConnectionAddComponent } from './pages/data-source-conne
 import { DataSourceTableConnectionUpdateComponent } from './pages/data-source-connection/data-source-table-connection-maintenance/data-source-table-connection-update/data-source-table-connection-update.component';
 import { AdHocExecutionComponent } from './pages/ad-hoc-data-script/ad-hoc-execution/ad-hoc-execution.component';
 import { ExecuteAdHocScriptComponent } from './pages/ad-hoc-data-script/ad-hoc-execution/components/execute-ad-hoc-script/execute-ad-hoc-script.component';
+import {UnderConstructonComponent} from "@core/modules/under-constructon/under-constructon.component";
+import { ManageProductComponent } from './pages/manage-product/manage-product/manage-product.component';
+import { AddProductComponent } from './pages/manage-product/manage-product/components/add-product/add-product.component';
+import { UpdateProductComponent } from './pages/manage-product/manage-product/components/update-product/update-product.component';
+import {MatLegacyButtonModule} from "@angular/material/legacy-button";
+import {MatLegacyDialogModule} from "@angular/material/legacy-dialog";
 
 
 
 const routes = [{
-  path: '',
-  canActivate: [GuardService],
+  /*path: '',
+  // canActivate: [GuardService],
   component: LayoutComponent,
   children: [
     {
       path: 'error-code-maintenance', component: CribErrorCodeMaintenanceComponent,
       pathMatch: 'full',
-      canActivate: [GuardService],
+      // canActivate: [GuardService],
       data: {
         breadcrumb: 'Error Code Maintenance',
-        allowedRoles : ['ADMIN_MODULE:Error_Code_Maintenance']
+        // allowedRoles : ['ADMIN_MODULE:Error_Code_Maintenance']
       }
     },
     {
       path: 'crib-catalogue-maintenance',
       component: CribCatalogueMaintenanceComponent,
-      canActivate: [GuardService],
+      // canActivate: [GuardService],
       data: {
         breadcrumb: 'CRIB Catalogue Maintenance',
-        allowedRoles : ['ADMIN_MODULE:CRIB_Catalogue_Maintenance']
+        // allowedRoles : ['ADMIN_MODULE:CRIB_Catalogue_Maintenance']
       }
     },
     {
       path: 'crib-catalogue-authorization',
       component: CribCatalogueAuthorizationComponent,
-      canActivate: [GuardService],
+      // canActivate: [GuardService],
       data: {
         breadcrumb: 'CRIB Catalogue Authorization',
-        allowedRoles : ['ADMIN_MODULE:CRIB_Catalogue_Authorization']
+        // allowedRoles : ['ADMIN_MODULE:CRIB_Catalogue_Authorization']
       }
-    },
-    {
-      path: 'crib-error-code-authorization',
-      component: CribErrorCodeAuthorizationComponent,
-      canActivate: [GuardService],
-      data: {
-        breadcrumb: 'Error Code Authorization',
-        allowedRoles : ['ADMIN_MODULE:Error_Code_Authorization']
-      }
-    },
-    {
-      path: 'data-source-connection-authorization',
-      component: DataSourceTableConnectionAuthorizationComponent,
-      canActivate: [GuardService],
-      data: {
-        breadcrumb: 'Data Source Connection Authorization',
-        allowedRoles : ['ADMIN_MODULE:Error_Code_Authorization'] //need to change
-      }
-    },
-    {
-      path: 'data-source-connection-maintenance',
-      component: DataSourceTableConnectionMaintenanceComponent,
-      canActivate: [GuardService],
-      data: {
-        breadcrumb: 'Data Source Connection Maintenance',
-        allowedRoles : ['ADMIN_MODULE:Error_Code_Authorization'] //need to change
-      }
-    },
-    {
-      path: 'system-general-settings-authorization',
-      component: GeneralSettingsComponent,
-      canActivate: [GuardService],
-      data: {
+    }*/
 
-        breadcrumb: 'System Settings',
-        allowedRoles : ['ADMIN_MODULE:System_General_Settings']
+  path: '',
+  component: LayoutComponent,
+  children: [
+
+    {
+      path: 'warehouse-product-maintenance',
+      component: ManageProductComponent,
+      data: {
+        breadcrumb: 'Warehouse Product Maintenance',
       }
     },
+
     {
-      path: 'system-consumer-settings',
-      component: ConsumerSettingsComponent,
-      canActivate: [GuardService],
-      data: {
+      path: 'under-construction',
+      component: UnderConstructonComponent,
 
-        breadcrumb: 'Consumer Settings',
-        allowedRoles : ['ADMIN_MODULE:System_Consumer_Settings']
-      }
-    },
-    {
-      path: 'system-commercial-settings',
-      component: CommercialSettingsComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Commercial Settings ',
-        allowedRoles : ['ADMIN_MODULE:System_Commercial_Settings']
-      }
-    },
-    {
-      path: 'system-consumer-dc-settings',
-      component: ConsumerDcSettingsComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Consumer DC Settings',
-        allowedRoles : ['ADMIN_MODULE:System_Consumer_DC_Settings']
-      }
-    },
-    {
-      path: 'system-commercial-dc-settings',
-      component: CommercialDcSettingsComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Commercial DC Settings',
-        allowedRoles : ['ADMIN_MODULE:System_Commercial_DC_Settings']
-      }
-    },
-    {
-      path: 'system-settings-authorization',
-      component: SystemReportingAuthorizationComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'System Settings Authorization',
-        allowedRoles : ['ADMIN_MODULE:System_Settings_Authorization']
-      }
-    },
-    {
-      path: 'test-connection/:id',
-      component: DataMappingComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Source Configuration',
-        allowedRoles : ['ADMIN_MODULE:Data_Mapping']
-      },
-      children: [
-        { path: 'test-connection/:id', redirectTo: 'test-and-save-connection', pathMatch: 'full' },
-        {
-
-          path: 'test-and-save-connection',
-          allowedRoles : ['ADMIN_MODULE:Data_Mapping'],
-          component :TestConnectionComponent
-        },
-        {
-          path: 'field-mapping',
-          allowedRoles : ['ADMIN_MODULE:Data_Mapping'],
-          component :FieldMappingComponent
-        },
-        {
-
-          path: 'final-query',
-          allowedRoles : ['ADMIN_MODULE:Data_Mapping'],
-          component :FinalQueryComponent
-        }
-      ]
-    },
-    {
-      path: 'data-mapping-authorization',
-      component: DataMappingAuthorizationComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Data Mapping Authorization',
-        allowedRoles : ['ADMIN_MODULE:Data_Mapping_Authorization']
-      }
-    },
-    {
-      path: 'business-rule-maintenance',
-      component: BusinessRuleMaintenanceComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Business Rules Maintenance',
-        allowedRoles : ['ADMIN_MODULE:Business_Rule_Maintenance']
-      }
-    },
-    {
-      path: 'business-rule-authorization',
-      component: BusinessRuleAuthorizationComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Business Rules Authorization',
-        allowedRoles : ['ADMIN_MODULE:Business_Rule_Authorization']
-      }
-    },
-    {
-      path: 'ad-hoc-maintenance',
-      component: AdHocMaintenanceComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Ad Hoc Data Script Maintenance',
-        allowedRoles : ['ADMIN_MODULE:AD_HOC_Maintenance']
-      }
-    },
-    {
-      path: 'ad-hoc-authorization',
-      component: AdHocAuthorizationComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Ad Hoc Data Script Authorization',
-        allowedRoles : ['ADMIN_MODULE:AD_HOC_Authorization']
-      }
-    },
-    {
-      path: 'ad-hoc-execution',
-      component: AdHocExecutionComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Ad Hoc Data Script Execution',
-        allowedRoles : ['ADMIN_MODULE:AD_HOC_Authorization']
-      }
-    },
-    {
-      path: 'upload-bureau-error-logs',
-      component: UploadErrorLogComponent,
-      canActivate: [GuardService],
-      data: {
-
-        breadcrumb: 'Upload Bureau Error Logs',
-        allowedRoles : ['ADMIN_MODULE:Bureau_Error_Logs']
-      }
-    },
-    {
-      path: 'close-bureau-reporting-cycle',
-      component: CloseReportingComponent,
-      canActivate: [GuardService],
-      data: {
-        breadcrumb: 'Close Bureau Reporting Cycle',
-        allowedRoles : ['ADMIN_MODULE:Bureau_Reporting_Cycle']
-      }
     }
   ]
 }] as Routes;
@@ -414,7 +242,10 @@ const routes = [{
         DataSourceTableConnectionAddComponent,
         DataSourceTableConnectionUpdateComponent,
         AdHocExecutionComponent,
-        ExecuteAdHocScriptComponent
+        ExecuteAdHocScriptComponent,
+        ManageProductComponent,
+        AddProductComponent,
+        UpdateProductComponent
 
 
     ],
@@ -442,6 +273,8 @@ const routes = [{
     MatChipsModule,
     AuthModule,
     NzStatisticModule,
+    MatLegacyButtonModule,
+    MatLegacyDialogModule,
   ]
 
 

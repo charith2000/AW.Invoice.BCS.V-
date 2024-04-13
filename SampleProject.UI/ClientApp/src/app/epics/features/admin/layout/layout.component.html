@@ -3,12 +3,14 @@
 
     <div (click)="sidenav.toggle()" class="d-flex justify-content-between mb-2">
       <div class="d-flex align-items-center ms-2">
-        <div class="card rounded-4 p-2 border-primary">
-          <em class="las la-tools icon-color" style="font-size: 25px"></em>
-        </div>
+        <!--<div class="card rounded-4 p-2 border-primary">
+&lt;!&ndash;          <em class="as la-warehouser" style="font-size: 25px"></em>&ndash;&gt;
+
+        </div>-->
+        <i class="las la-industry"  style="font-size: 40px"></i>
         <div>
-          <div class="fs-5 ms-2 fw-semibold"> Admin</div>
-          <small class="ms-2 text-secondary"> {{reportingDate | date}} </small>
+          <div class="fs-5 ms-2 fw-semibold"> Warehouse</div>
+          <small class="ms-2 text-secondary"> {{today | date}} </small>
         </div>
 
       </div>
@@ -19,16 +21,15 @@
     <div>
       <ul nz-menu nzMode="inline" style="width: 279px;">
 
-        <!--------General--------->
         <div class="d-flex align-items-center mt-3">
-          <h6 class="ms-2 layout-header-text"> General </h6>
+          <h6 class="ms-2 layout-header-text"> Dashboard </h6>
         </div>
 
         <li
           nz-submenu
           [(nzOpen)]="openMap.sub1"
           (nzOpenChange)="openHandler('sub1')"
-          nzTitle="Catalogue Code"
+          nzTitle="System Settings"
           nzIcon="code-sandbox"
         >
           <ul>
@@ -36,71 +37,41 @@
 
               <li
                 nz-menu-item
-                [appPermission]="['ADMIN_MODULE:CRIB_Catalogue_Maintenance']"
-                [checkForPrefix]=false
               >
                 <a
-                  [routerLink]="['crib-catalogue-maintenance']">
+                  [routerLink]="['under-construction']">
                 </a>
-                Maintenance
-              </li>
-              <li
-                nz-menu-item
-                [appPermission]="['ADMIN_MODULE:CRIB_Catalogue_Authorization']">
-                <a
-                  [routerLink]="['crib-catalogue-authorization']">
-                </a>
-                Authorization
+                Stock Manager
               </li>
             </ul>
           </ul>
         </li>
+        <!--------General--------->
+        <div class="d-flex align-items-center mt-3">
+          <h6 class="ms-2 layout-header-text"> General </h6>
+        </div>
+
+
 
         <li
           nz-submenu
           [(nzOpen)]="openMap.sub2"
           (nzOpenChange)="openHandler('sub2')"
-          nzTitle="CRIB Error Codes"
+          nzTitle="Product"
           nzIcon="code-sandbox"
         >
           <ul>
-            <li
-              nz-menu-item
-              [appPermission]="['ADMIN_MODULE:Error_Code_Maintenance']">
-              <a [routerLink]="['error-code-maintenance']">
-            </a>
-              Maintenance
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:Error_Code_Authorization']">
-              <a [routerLink]="['crib-error-code-authorization']">
-            </a>
-              Authorization
-            </li>
-          </ul>
-        </li>
+            <ul>
 
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub8"
-          (nzOpenChange)="openHandler('sub2')"
-          nzTitle="Data Source Connection"
-          nzIcon="code-sandbox"
-        >
-          <ul>
-            <li
-              nz-menu-item
-              [appPermission]="['ADMIN_MODULE:Error_Code_Maintenance']">
-              <a [routerLink]="['data-source-connection-maintenance']">
-              </a>
-              Maintenance
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:Error_Code_Authorization']">
-              <a [routerLink]="['data-source-connection-authorization']">
-              </a>
-              Authorization
-            </li>
+              <li
+                nz-menu-item
+              >
+                <a
+                  [routerLink]="['warehouse-product-maintenance']">
+                </a>
+                Maintenance
+              </li>
+            </ul>
           </ul>
         </li>
 
@@ -108,144 +79,7 @@
           nz-submenu
           [(nzOpen)]="openMap.sub3"
           (nzOpenChange)="openHandler('sub3')"
-          nzTitle="System Settings"
-          nzIcon="setting"
-        >
-          <ul>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:System_General_Settings']"
-            ><a [routerLink]="['system-general-settings-authorization']">
-            </a>
-              Common Settings
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:System_Consumer_Settings']"
-            ><a [routerLink]="['system-consumer-settings']">
-            </a>
-              Consumer Settings
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:System_Commercial_Settings']"
-            ><a [routerLink]="['system-commercial-settings']">
-            </a>
-              Commercial Settings
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:System_Consumer_DC_Settings']"
-            ><a [routerLink]="['system-consumer-dc-settings']">
-            </a>
-              Consumer DC Settings
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:System_Commercial_DC_Settings']"
-            ><a [routerLink]="['system-commercial-dc-settings']">
-            </a>
-              Commercial DC Settings
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:System_Settings_Authorization']"
-            ><a [routerLink]="['system-settings-authorization']">
-            </a>
-              Authorization
-            </li>
-          </ul>
-        </li>
-
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub4"
-          (nzOpenChange)="openHandler('sub4')"
-          nzTitle="Business Rules"
-          nzIcon="code-sandbox"
-        >
-          <ul>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:Business_Rule_Maintenance']"
-            ><a [routerLink]="['business-rule-maintenance']"></a>
-              Maintenance
-            </li>
-            <li nz-menu-item
-                [appPermission]="['ADMIN_MODULE:Business_Rule_Authorization']"
-            ><a [routerLink]="['business-rule-authorization']"></a>
-              Authorization
-            </li>
-          </ul>
-        </li>
-
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub5"
-          (nzOpenChange)="openHandler('sub5')"
-          nzTitle="Excluding Facilities"
-          nzIcon="code-sandbox"
-        >
-          <ul>
-            <ul>
-              <li nz-menu-item
-                  [appPermission]="['ADMIN_MODULE:Excluding_Facility_Maintenance']"
-              ><a [routerLink]="['excluding-facility-maintenance']">
-              </a>
-                Maintenance
-              </li>
-              <li nz-menu-item
-                  [appPermission]="['ADMIN_MODULE:Excluding_Facility_Authorization']"
-              ><a [routerLink]="['excluding-facility-authorization']">
-              </a>
-                Authorization
-              </li>
-            </ul>
-          </ul>
-        </li>
-
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub6"
-          (nzOpenChange)="openHandler('sub6')"
-          nzTitle="Ad Hoc Data Script"
-          nzIcon="code-sandbox"
-        >
-          <ul>
-            <ul>
-              <li nz-menu-item
-                  [appPermission]="['ADMIN_MODULE:AD_HOC_Maintenance']"
-              ><a [routerLink]="['ad-hoc-maintenance']">
-              </a>
-                Maintenance
-              </li>
-              <li nz-menu-item
-                  [appPermission]="['ADMIN_MODULE:AD_HOC_Authorization']"
-              ><a [routerLink]="['ad-hoc-authorization']">
-              </a>
-                Authorization
-              </li>
-<!--              change permission-->
-              <li nz-menu-item
-                  [appPermission]="['ADMIN_MODULE:AD_HOC_Authorization']"
-              ><a [routerLink]="['ad-hoc-execution']">
-              </a>
-                Execution
-              </li>
-            </ul>
-          </ul>
-        </li>
-        <div class="d-flex align-items-center mt-3">
-          <h6 class="mt-3 ms-2 layout-header-text"
-          > Data Mapping </h6>
-        </div>
-        <app-data-mapping-menu></app-data-mapping-menu>
-        <div class="d-flex align-items-center mt-3">
-          <h6 class="mt-3 ms-2 layout-header-text"
-              [appPermission]="['ADMIN_MODULE:Bureau_Error_Logs']"
-              [checkForPrefix]=false
-          > File upload </h6>
-        </div>
-        <li
-          [appPermission]="['ADMIN_MODULE:Bureau_Error_Logs']"
-          [checkForPrefix]=false
-          nz-submenu
-          [(nzOpen)]="openMap.sub7"
-          (nzOpenChange)="openHandler('sub7')"
-          nzTitle="Bureau Error Logs"
+          nzTitle="Stock"
           nzIcon="code-sandbox"
         >
           <ul>
@@ -253,41 +87,24 @@
 
               <li
                 nz-menu-item
-                [appPermission]="['ADMIN_MODULE:Bureau_Error_Logs']"
-                [checkForPrefix]=false
               >
                 <a
-                  [routerLink]="['upload-bureau-error-logs']">
+                  [routerLink]="['warehouse-product-maintenance']">
                 </a>
-                Upload
+                Maintenance
+              </li>
+              <li
+                nz-menu-item
+              >
+                <a
+                  [routerLink]="['warehouse-product-maintenance']">
+                </a>
+               Release
               </li>
             </ul>
           </ul>
         </li>
 
-
-        <div class="d-flex align-items-center mt-3">
-          <h6 class="mt-3 ms-2 layout-header-text"
-              [appPermission]="['ADMIN_MODULE:Bureau_Reporting_Cycle']"
-              [checkForPrefix]=false
-          >Bureau Reporting Cycle </h6>
-        </div>
-        <ul>
-          <ul>
-
-            <li
-              [appPermission]="['ADMIN_MODULE:Bureau_Reporting_Cycle']"
-              [checkForPrefix]=false
-              nz-menu-item
-
-            >
-              <a
-                [routerLink]="['close-bureau-reporting-cycle']">
-              </a>
-              Close Reporting
-            </li>
-          </ul>
-        </ul>
 
 
 
@@ -322,3 +139,34 @@
     </div>
   </div>
 </mat-sidenav-container>
+<!--<li
+          nz-submenu
+          [(nzOpen)]="openMap.sub1"
+          (nzOpenChange)="openHandler('sub1')"
+          nzTitle="Catalogue Code"
+          nzIcon="code-sandbox"
+        >
+          <ul>
+            <ul>
+
+              <li
+                nz-menu-item
+                [appPermission]="['ADMIN_MODULE:CRIB_Catalogue_Maintenance']"
+                [checkForPrefix]=false
+              >
+                <a
+                  [routerLink]="['crib-catalogue-maintenance']">
+                </a>
+                Maintenance
+              </li>
+              <li
+                nz-menu-item
+                [appPermission]="['ADMIN_MODULE:CRIB_Catalogue_Authorization']">
+                <a
+                  [routerLink]="['crib-catalogue-authorization']">
+                </a>
+                Authorization
+              </li>
+            </ul>
+          </ul>
+        </li>-->
