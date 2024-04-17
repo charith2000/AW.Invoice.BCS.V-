@@ -1,5 +1,7 @@
+using Application.BranchRepo;
 using Application.CustomRepos;
 using Application.ProductRepo;
+using Application.StockDispatchRepo;
 using Application.StockRepo;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,12 @@ builder.Services.AddScoped<IStockRepository, StockRepository>();
 
 builder.Services.AddScoped<IProductStockService, ProductStockService>();
 builder.Services.AddScoped<IProductStockRepository, ProductStockRepository>();
+
+builder.Services.AddScoped<IBranchService, BranchService>();
+builder.Services.AddScoped<IBranchRepository, BranchRepository>();
+
+builder.Services.AddScoped<IStockDispatchService, StockDispatchService>();
+builder.Services.AddScoped<IStockDispatchRepository, StockDispatchRepository>();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {

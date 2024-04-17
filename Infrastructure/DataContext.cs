@@ -15,7 +15,7 @@ namespace Infrastructure
         {
         }
 
-        public DbSet<Branch> Branch { get; set; }
+        public DbSet<Branch> Branches { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }

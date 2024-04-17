@@ -20,14 +20,14 @@ namespace AW.Invoice.BCS.UI.Controllers
         public async Task<ActionResult<List<ProductStockDetails>>> Get()
         {
             var productStockFromService = _productStockService.GetAll().ToList();
-            return productStockFromService;
+            return Ok(productStockFromService);
         }
 
         [HttpGet("barcode")]
         public async Task<ActionResult<ProductStockDetails>> GetByBarCode(string barcode)
         {
             var productStockFromService = _productStockService.GetProductStockByBarCode(barcode);
-            return productStockFromService;
+            return Ok(productStockFromService);
         }
     }
 }
